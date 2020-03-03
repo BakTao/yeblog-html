@@ -26,12 +26,12 @@ jQuery(document).ready(function () {
         }
         if (username != '' && password != '') {
             var data = {
-                "loginId":"123",
-                "password":"213"
+                "loginId":"username",
+                "password":"password"
             };
             $.ajax({
                 type:"post",
-                url:"http://localhost:8100/back/userServices/adminLogin",
+                url:host+"/back/loginServices/adminLogin",
                 contentType:"application/json",
                 data:JSON.stringify(data),
                 success: function(data){
@@ -41,7 +41,7 @@ jQuery(document).ready(function () {
                     console.log(msg)
                 }
             })
-            //$(window).attr('location', '../index.html');
+            $(window).attr('location', '../index.html');
         }
     });
 
@@ -62,7 +62,6 @@ function alertmsg(msg) {
             time: 5000, //5s后自动关闭
             btn: ['关闭']
         });
-
 
     });
 }
