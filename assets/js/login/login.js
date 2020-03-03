@@ -11,7 +11,7 @@ jQuery(document).ready(function () {
             $('#loginform .error').fadeIn('fast', function () {
                 $('#loginform .username').focus();
             });
-            alertmsg('用户名不能为空')
+            alertmsgtm('用户名不能为空')
             return false;
         }
         if (password == '') {
@@ -21,13 +21,13 @@ jQuery(document).ready(function () {
             $('#loginform .error').fadeIn('fast', function () {
                 $('#loginform .password').focus();
             });
-            alertmsg('密码不能为空')
+            alertmsgtm('密码不能为空')
             return false;
         }
         if (username != '' && password != '') {
             var data = {
-                "loginId":"username",
-                "password":"password"
+                "loginId":username,
+                "password":password
             };
             $.ajax({
                 type:"post",
@@ -35,13 +35,18 @@ jQuery(document).ready(function () {
                 contentType:"application/json",
                 data:JSON.stringify(data),
                 success: function(data){
-                    console.log(data)
+                    if(data.head.code == "601"){
+                        alertmsgtm(data.head.msg)
+                    }
+                    else{
+                        sessionStorage.setItem('token', data.body.token)
+                        $(window).attr('location', '../index.html')
+                    }
                 },
                 error: function(msg){
                     console.log(msg)
                 }
             })
-            $(window).attr('location', '../index.html');
         }
     });
 
@@ -52,18 +57,5 @@ jQuery(document).ready(function () {
 
 
 });
-
-function alertmsg(msg) {
-    layui.use('layer', function () {
-        var $ = layui.jquery, layer = layui.layer;
-
-        layer.msg(msg, {
-            area: ['300px', '110px'],
-            time: 5000, //5s后自动关闭
-            btn: ['关闭']
-        });
-
-    });
-}
 
 
