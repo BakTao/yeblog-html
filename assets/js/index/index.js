@@ -16,7 +16,7 @@ function unloginmsg(msg) {
     });
 }
 
-checkLogin()
+//checkLogin()
 
 $(function(){
     $a = $(window).height();
