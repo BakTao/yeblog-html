@@ -6,7 +6,7 @@
 }
 
 a {
-  color: #007bff;
+  color: #6777ef;
   transition: all .5s;
   -webkit-transition: all .5s;
   -o-transition: all .5s
@@ -2134,7 +2134,11 @@ h6 .badge {
   text-align: center;
   border-radius: 50%
 }
-
+.navbar .top-title{
+  width: 75%;
+  font-size: 20px;
+  text-align: center;
+}
 .navbar .active .nav-link {
   color: #fff;
   font-weight: 700
@@ -2594,13 +2598,12 @@ a.dropdown-item:focus,a.dropdown-item:active,a.dropdown-item.active {
   --light: color(light);
   --dark: color(dark)
 }
-
+/* 整个body */
 body {
   background-color: #fff;
   font-size: 14px;
   font-weight: 400;
-  font-family: 'Raleway', 'Segoe UI', arial;
-  color: #162168
+  color: #262D33
 }
 
 a.bb {
@@ -3253,10 +3256,9 @@ body.sidebar-mini .main-sidebar .sidebar-menu>li>a .badge {
 body.sidebar-mini .main-sidebar .sidebar-menu>li>a.has-dropdown:after {
   content: initial
 }
-
+/* 导航栏缩进后的字体颜色 */
 body.sidebar-mini .main-sidebar .sidebar-menu>li.active>a {
-  box-shadow: 0 4px 8px #7a58ad;
-  background-color: #563d7c;
+  box-shadow: 0 4px 8px #262D33;
   color: #fff
 }
 
@@ -3570,7 +3572,7 @@ body.layout-4 .navbar {
 }
 
 body.layout-4 .navbar .nav-link.nav-link-user,body.layout-4 .navbar .nav-link {
-  color: #563d7c
+  color: #262D33
 }
 
 body.layout-4 .main-sidebar {
@@ -4001,11 +4003,11 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
   padding-left: 53px;
   background-color: #fff
 }
-
+/* 导航栏背景颜色 */
 body:not(.sidebar-mini) .sidebar-style-3 {
-  background-color: #563d7c
+  background-color: #262D33
 }
-
+/* 导航栏字体颜色 */
 body:not(.sidebar-mini) .sidebar-style-3 .sidebar-brand a {
   color: #fff
 }

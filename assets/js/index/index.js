@@ -18,16 +18,3 @@ function unloginmsg(msg) {
 
 //checkLogin()
 
-$(function(){
-    $a = $(window).height();
-    $("#left").height($a);
-    $("#btn").click(function(){
-        $("#left").animate({left:'-200px'});
-        $("#btnb").delay(500).animate({left:'0'});
-    });
-    $("#btnb").click(function(){
-        $("#btnb").animate({left:'-50px'});
-        $("#left").delay(500).animate({left:'0'});
-    });
-});
-
