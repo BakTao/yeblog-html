@@ -1,1 +1,33 @@
-<div>注册量s统计</div>
+<section class="section">
+    <div class="section-header">
+        <h1>注册量统计</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item">首页</div>
+            <div class="breadcrumb-item">统计相关</div>
+            <div class="breadcrumb-item">注册量统计</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Statistics</h4>
+                    <div class="card-header-action">
+                        <div class="layui-input-inline">
+                            <select name="quiz1">
+                              <option value="">请选择省</option>
+                              <option value="浙江" selected="">浙江省</option>
+                              <option value="你的工号">江西省</option>
+                              <option value="你最喜欢的老师">福建省</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="register-chart" style="width: 100%;height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="../../assets/js/charts/registerChart.js"></script>
