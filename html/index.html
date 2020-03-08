@@ -9,6 +9,7 @@
   <!-- 公用 -->
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/modules/fontawesome/css/all.min.css">
+  <link rel="shortcut icon" href="#" />
 
   <!-- CSS Libraries -->
   <!-- <link rel="stylesheet" href="assets/modules/jqvmap/dist/jqvmap.min.css">
@@ -72,35 +73,35 @@
                 <ul class="sidebar-menu">
                     <li class="menu-header">首页</li>
                     <li class="dropdown active">
-                        <a href="#" class="nav-link"><i class="fas fa-home"></i><span>首页</span></a>
+                        <a href="home/home.html" class="nav-link router-link"><i class="fas fa-home"></i><span>首页</span></a>
                     </li>
                     <li class="menu-header">用户相关</li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown"><i class="fas fa-user-cog"></i> <span>用户信息</span></a>
+                        <a href="user-related/user.html" class="nav-link router-link" data-toggle="dropdown"><i class="fas fa-user-cog"></i> <span>用户信息</span></a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i> <span>文章&专栏</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="bootstrap-alert.html">文章管理</a></li>
-                            <li><a class="nav-link" href="bootstrap-badge.html">专栏管理</a></li>
+                            <li><a class="nav-link router-link" href="user-related/article-column/article.html">文章管理</a></li>
+                            <li><a class="nav-link router-link" href="user-related/article-column/column.html">专栏管理</a></li>
                         </ul>
                     </li>
                     <li class="menu-header">商城相关</li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i> <span>商城管理</span></a>
+                        <a href="shop-related/shop.html" class="nav-link router-link"><i class="fas fa-shopping-cart"></i> <span>商城管理</span></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link"><i class="fab fa-wpforms"></i> <span>订单管理</span></a>
+                        <a href="shop-related/order.html" class="nav-link router-link"><i class="fab fa-wpforms"></i> <span>订单管理</span></a>
                     </li>
                     <li class="menu-header">统计相关</li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link"><i class="fas fa-chart-line"></i> <span>注册量统计</span></a>
+                        <a href="charts/registerChart.html" class="nav-link router-link"><i class="fas fa-chart-line"></i> <span>注册量统计</span></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link"><i class="fas fa-chart-area"></i> <span>访问量统计</span></a>
+                        <a href="#" class="nav-link router-link"><i class="fas fa-chart-area"></i> <span>访问量统计</span></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link"><i class="fas fa-chart-bar"></i> <span>订单量统计</span></a>
+                        <a href="#" class="nav-link router-link"><i class="fas fa-chart-bar"></i> <span>订单量统计</span></a>
                     </li>
                 </ul>
             </aside>
@@ -127,7 +128,6 @@
   <script src="../assets/js/jquery.ba-resize.js"></script>
   <!-- <script src="assets/js/CodiePie.js"></script> -->
   <script>
-    $("div#router-div").load("home/home.html");
   </script>
   <!-- JS Libraies -->
   <!-- <script src="assets/modules/jquery.sparkline.min.js"></script>
@@ -141,6 +141,8 @@
 
   <!-- Template JS File -->
   <script src="../assets/js/index/scripts.js"></script>
+  <script src="../assets/js/index/index.js"></script>
+
   <!-- <script src="assets/js/custom.js"></script> -->
 </body>
 

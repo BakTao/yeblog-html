@@ -1,5 +1,7 @@
 var host="http://localhost:8888/api"
 
+
+
 //透明弹框
 function alertmsgtm(msg) {
     layui.use('layer', function () {

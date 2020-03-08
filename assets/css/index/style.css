@@ -3180,7 +3180,7 @@ body.sidebar-mini .main-sidebar .sidebar-menu>li ul.dropdown-menu {
 
 body.sidebar-mini .main-sidebar .sidebar-menu>li ul.dropdown-menu li>a:focus,body.sidebar-mini .main-sidebar .sidebar-menu>li ul.dropdown-menu li.active>a,body.sidebar-mini .main-sidebar .sidebar-menu>li ul.dropdown-menu li.active>a:hover {
   color: #fff;
-  background-color: #563d7c !important
+  background-color: rgba(49, 144, 199, 0.9) !important
 }
 
 body.sidebar-mini .main-sidebar .sidebar-menu>li ul.dropdown-menu li a {
@@ -3307,7 +3307,9 @@ body.layout-3 .navbar.navbar-secondary {
 body.layout-3 .navbar.navbar-secondary .navbar-nav>.nav-item.active>.nav-link {
   color: #563d7c
 }
-
+ul.dropdown-menu li.active {
+  background-color: rgba(49, 144, 199, 0.9)
+}
 body.layout-3 .navbar.navbar-secondary .navbar-nav>.nav-item.active>.nav-link:before {
   left: 35px;
   right: 0
