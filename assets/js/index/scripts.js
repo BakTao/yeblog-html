@@ -19,6 +19,7 @@ Chart.defaults.global.tooltips.cornerRadius = 3;
 if(window.Dropzone) {
     Dropzone.autoDiscover = false;
 }
+// 加载页面
 $(function() {
     setTimeout(function() {
         $('.page-loader-wrapper').fadeOut();
