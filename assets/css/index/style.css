@@ -4036,3 +4036,14 @@ body:not(.sidebar-mini) .sidebar-style-3 .sidebar-menu li.active ul.dropdown-men
     opacity: 0.0
   }
 }
+
+.layui-form-item .layui-input-inline{
+  width: 175px
+}
+.layui-form-label{
+  padding: 9px 5px;
+  width: 95px;
+}
+.layui-layer-btn .layui-layer-btn0{
+  color: white !important
+}
