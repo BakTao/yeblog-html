@@ -1,10 +1,16 @@
 layui.use(['table', 'form', 'layedit', 'laydate'], function () {
     var table = layui.table;
     var form = layui.form
-    ,layer = layui.layer
-    ,layedit = layui.layedit
-    ,laydate = layui.laydate;
-    table.render({
+        , layer = layui.layer
+        , layedit = layui.layedit
+        , laydate = layui.laydate;
+    laydate.render({
+        elem: '#regTimeQ'
+    });
+    laydate.render({
+        elem: '#regTimeZ'
+    });
+    var userFormTable = table.render({
         elem: '#userForm'
         , url: host + "/back/userServices/pageUserInfo"
         , method: 'post'
@@ -65,23 +71,108 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
     //监听行工具事件
     table.on('tool(userForm)', function (obj) {
         var data = obj.data;
-        console.log(data)
         if (obj.event === 'delete') {
-            layer.confirm('确定作废此人的账户?', function (index) {
-                obj.del();
-                layer.close(index);
+            layer.prompt({
+                type: 1,
+                formType: 2,                    //这里依然指定类型是多行文本框，但是在下面content中也可绑定多行文本框
+                title: '是否作废此账号?',
+                area: ['300px', '120px'],
+                btnAlign: 'c',
+                btn: ['确定', '取消'],
+                closeBtn: 0,                    //不显示关闭按钮
+                content: `<textarea name="zfReason" id="zfReason" placeholder="作废理由" style="width:300px;height:120px;"></textarea>`,
+                yes: function (index) {
+                    var reason = $('#zfReason').val();
+                    if (reason == '') {
+                        layer.open({
+                            title: "提示"
+                            , content: `作废理由不能为空`
+                            , btn: ['关闭']
+                            , btnAlign: 'c' //按钮居中
+                            , yes: function (index) {   //加index,只关闭当前的
+                                layer.close(index);
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            url: host + "/back/userServices/updateUserInfo",
+                            contentType: "application/json",
+                            type: "post",
+                            data: JSON.stringify({
+                                "loginId": data.loginId,
+                                "enable": "0",
+                                "reason": reason
+                            }),
+                            success: function (data) {
+                                if (data.body == "success") {
+                                    alertmsgtmftm("操作成功")
+                                    userFormTable.reload();
+                                }
+                                else {
+                                    alertmsgtmftm("操作失败,请稍后再试")
+                                }
+                            },
+                        })
+                    }
+                },
+                btn2: function (index) {
+                    var reason = $('#zfReason').val();
+                    if (reason != '') {
+                        layer.open({
+                            title: "提示"
+                            , content: `是否关闭?`
+                            , btn: ['返回', '关闭']
+                            , btnAlign: 'c' //按钮居中
+                            , yes: function (index) {   //加index,只关闭当前的
+                                layer.close(index);
+                            }, btn2: function () {
+                                layer.closeAll();
+                            }
+                        });
+                        return false;               //不关闭父窗口
+                    }
+                }
             });
+
         } else if (obj.event === 'recover') {
-            layer.confirm('确定恢复此人的账户?', function (index) {
-                obj.del();
-                layer.close(index);
+            layer.prompt({
+                type: 1,
+                formType: 2,                    //这里依然指定类型是多行文本框，但是在下面content中也可绑定多行文本框
+                title: '是否恢复此账号?',
+                area: ['300px', '120px'],
+                btnAlign: 'c',
+                btn: ['确定', '取消'],
+                closeBtn: 0,                    //不显示关闭按钮
+                content: `<p>注意:恢复会把之前的作废理由清空</p>`,
+                yes: function (index) {
+
+                    $.ajax({
+                        url: host + "/back/userServices/updateUserInfo",
+                        contentType: "application/json",
+                        type: "post",
+                        data: JSON.stringify({
+                            "loginId": data.loginId,
+                            "enable": "1",
+                            "reason": ""
+                        }),
+                        success: function (data) {
+                            if (data.body == "success") {
+                                alertmsgtmftm("操作成功")
+                                userFormTable.reload();
+                            }
+                            else {
+                                alertmsgtmftm("操作失败,请稍后再试")
+                            }
+                        },
+                    })
+                }
             });
         } else if (obj.event === 'view') {
             layer.open({
                 title: "编辑用户信息"
                 , type: 1
                 , area: ['70%', '85%']
-                , offset: ['10%','25%']
+                , offset: ['10%', '25%']
                 , content: $("div #editForm")
                 , btn: ['关闭']
                 , btnAlign: 'c' //按钮居中
@@ -92,25 +183,35 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             });
             form.val('editForm', {
                 "name": data.name // "name": "value"
-                ,"sex": data.sex
-                ,"loginId": data.loginId
-                ,"password": data.password
-                ,"phone": data.phone
-                ,"email": data.email
-                ,"regTime": data.regTime
-                ,"blogCount": data.blogCount
-                ,"ownBlogCount": data.ownBlogCount
-                ,"noOwnBlogCount": data.noOwnBlogCount
-                ,"testBlogCount": data.testBlogCount
-                ,"lastLogIp": data.lastLogIp
-                ,"lastLogTime": data.lastLogTime
-                ,"enable": data.enable == "1"
-                ,"reason": data.reason
-              });
-              //$("#userPhoto").attr("src",data.userPhoto)
+                , "sex": data.sex
+                , "loginId": data.loginId
+                , "password": data.password
+                , "phone": data.phone
+                , "email": data.email
+                , "regTime": data.regTime
+                , "blogCount": data.blogCount
+                , "ownBlogCount": data.ownBlogCount
+                , "noOwnBlogCount": data.noOwnBlogCount
+                , "testBlogCount": data.testBlogCount
+                , "lastLogIp": data.lastLogIp
+                , "lastLogTime": data.lastLogTime
+                , "enable": data.enable == "1"
+                , "reason": data.reason
+            });
+            //$("#userPhoto").attr("src",data.userPhoto)
         }
     });
 
-
+    //查询
+    layui.$('#userSearchFormBtn').on('click', function () {
+        var data = form.val('userSearchForm');
+        table.reload('userForm',{
+            where: data,
+            url: host + "/back/userServices/pageUserInfo",
+            method: "post",
+            contentType: 'application/json'
+        })
+        return false;
+    });
 
 });

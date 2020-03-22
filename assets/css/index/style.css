@@ -4037,13 +4037,20 @@ body:not(.sidebar-mini) .sidebar-style-3 .sidebar-menu li.active ul.dropdown-men
   }
 }
 
-.layui-form-item .layui-input-inline{
+div#editForm .layui-form-item .layui-input-inline{
   width: 175px
 }
-.layui-form-label{
+div#editForm .layui-form-label{
   padding: 9px 5px;
   width: 95px;
 }
 .layui-layer-btn .layui-layer-btn0{
   color: white !important
+}
+#userSearchForm .layui-form-item .layui-input-inline{
+  width: 160px;
+}
+#userSearchForm .layui-form-label{
+  padding: 9px 5px;
+  width: 70px;
 }

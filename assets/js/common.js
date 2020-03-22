@@ -23,10 +23,10 @@ function alertmsgtmftm(msg) {
 
         layer.open({
             offset: "auto"
-            ,content: '<div style="padding: 20px 100px;">'+ msg +'</div>'
+            ,content: '<p>'+ msg +'</p>'
             ,btn: '关闭'
             ,btnAlign: 'c' //按钮居中
-            ,shade: 0 //不显示遮罩
+            //,shade: 0 //不显示遮罩
             ,yes: function(){
               layer.closeAll();
             }

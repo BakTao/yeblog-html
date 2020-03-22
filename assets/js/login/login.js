@@ -44,7 +44,7 @@ jQuery(document).ready(function () {
                     }
                 },
                 error: function(msg){
-                    console.log(msg)
+                    alertmsgtmftm("操作失败,请稍后再试")
                 }
             })
         }
