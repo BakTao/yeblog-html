@@ -4,6 +4,8 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         , layer = layui.layer
         , layedit = layui.layedit
         , laydate = layui.laydate;
+        
+    form.render();
     laydate.render({
         elem: '#regTimeQ'
     });
@@ -27,9 +29,20 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             pageName: 'pageIndex',
             limitName: 'pageSize'
         }
+        , toolbar: true                 //显示过滤列
+        , defaultToolbar: ['filter']    //显示过滤列
         , title: '用户数据表'
         , cols: [[
-            { type: 'checkbox', fixed: 'left' }
+            {
+                field: 'enable', title: '状态', width: 80, align: 'center', sort: true, templet: function (res) {
+                    if (res.enable == "1") {
+                        return '<button type="button" class="btn btn-warning" style="height: 100%;width: 100%;padding:0;">正常</button>'
+                    } else {
+                        return '<button type="button" class="btn btn-danger" style="height: 100%;width: 100%;padding:0;">封禁</button>'
+                    }
+
+                }
+            }
             , { field: 'name', title: '名称', width: 80, align: 'center', sort: true }
             , { field: 'sex', title: '性别', width: 60, align: 'center' }
             , {
@@ -42,20 +55,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
 
             , { field: 'lastLogIp', title: '上次登录IP', width: 160, align: 'center' }
             , { field: 'lastLogTime', title: '上次登录时间', width: 180, align: 'center', sort: true }
-            , {
-                field: 'enable', title: '状态', width: 80, align: 'center', sort: true, templet: function (res) {
-                    if (res.enable == "1") {
-                        return '<button type="button" class="btn btn-warning" style="height: 100%;width: 100%;padding:0;">有效</button>'
-                    } else {
-                        return '<button type="button" class="btn btn-danger" style="height: 100%;width: 100%;padding:0;">无效</button>'
-                    }
-
-                }
-            }
+            , { field: 'blogCount', title: '博客数', width: 100, align: 'center', sort: true }
             , {
                 fixed: 'oper', title: '操作', fixed: 'right', align: 'center', width: 150, templet: function (res) {
                     if (res.enable == "1") {
-                        return ' <a class="layui-btn layui-btn-xs" lay-event="view" style="color:white;">查看</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete" style="color:white;">作废</a>'
+                        return ' <a class="layui-btn layui-btn-xs" lay-event="view" style="color:white;">查看</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete" style="color:white;">封禁</a>'
 
                     } else {
                         return ' <a class="layui-btn layui-btn-xs" lay-event="view" style="color:white;">查看</a> <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="recover" style="color:white;">恢复</a>'
@@ -75,18 +79,18 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             layer.prompt({
                 type: 1,
                 formType: 2,                    //这里依然指定类型是多行文本框，但是在下面content中也可绑定多行文本框
-                title: '是否作废此账号?',
+                title: '是否封禁此账号?',
                 area: ['300px', '120px'],
                 btnAlign: 'c',
                 btn: ['确定', '取消'],
                 closeBtn: 0,                    //不显示关闭按钮
-                content: `<textarea name="zfReason" id="zfReason" placeholder="作废理由" style="width:300px;height:120px;"></textarea>`,
+                content: `<textarea name="zfYhReason" id="zfYhReason" placeholder="封禁理由" style="width:300px;height:120px;"></textarea>`,
                 yes: function (index) {
-                    var reason = $('#zfReason').val();
+                    var reason = $('#zfYhReason').val();
                     if (reason == '') {
                         layer.open({
                             title: "提示"
-                            , content: `作废理由不能为空`
+                            , content: `封禁理由不能为空`
                             , btn: ['关闭']
                             , btnAlign: 'c' //按钮居中
                             , yes: function (index) {   //加index,只关闭当前的
@@ -116,7 +120,7 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                     }
                 },
                 btn2: function (index) {
-                    var reason = $('#zfReason').val();
+                    var reason = $('#zfYhReason').val();
                     if (reason != '') {
                         layer.open({
                             title: "提示"
@@ -143,7 +147,7 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 btnAlign: 'c',
                 btn: ['确定', '取消'],
                 closeBtn: 0,                    //不显示关闭按钮
-                content: `<p>注意:恢复会把之前的作废理由清空</p>`,
+                content: `<p>注意:恢复会把之前的封禁理由清空</p>`,
                 yes: function (index) {
 
                     $.ajax({

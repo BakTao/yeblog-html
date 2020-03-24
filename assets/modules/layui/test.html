@@ -10,137 +10,103 @@
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-
  
+<table class="layui-hide" id="test" lay-filter="test"></table>
  
-<!-- 示例-970 -->
-  
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-  <legend>赋值和取值</legend>
-</fieldset>
+<script type="text/html" id="toolbarDemo1">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+  </div>
+</script>
  
-<form class="layui-form" action="" lay-filter="example">
-  <div class="layui-form-item">
-    <label class="layui-form-label">输入框</label>
-    <div class="layui-input-block">
-      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">密码框</label>
-    <div class="layui-input-block">
-      <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
-    </div>
-  </div>
-  
-  <div class="layui-form-item">
-    <label class="layui-form-label">选择框</label>
-    <div class="layui-input-block">
-      <select name="interest" lay-filter="aihao">
-        <option value=""></option>
-        <option value="0">写作</option>
-        <option value="1">阅读</option>
-        <option value="2">游戏</option>
-        <option value="3">音乐</option>
-        <option value="4">旅行</option>
-      </select>
-    </div>
-  </div>
-  
-  <div class="layui-form-item">
-    <label class="layui-form-label">复选框</label>
-    <div class="layui-input-block">
-      <input type="checkbox" name="like[write]" title="写作">
-      <input type="checkbox" name="like[read]" title="阅读">
-      <input type="checkbox" name="like[daze]" title="发呆">
-    </div>
-  </div>
-  
-  <div class="layui-form-item">
-    <label class="layui-form-label">开关</label>
-    <div class="layui-input-block">
-      <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
-    </div>
-  </div>
-  
-  <div class="layui-form-item">
-    <label class="layui-form-label">单选框</label>
-    <div class="layui-input-block">
-      <input type="radio" name="sex" value="男" title="男" checked="">
-      <input type="radio" name="sex" value="女" title="女">
-    </div>
-  </div>
-  <div class="layui-form-item layui-form-text">
-    <label class="layui-form-label">文本域</label>
-    <div class="layui-input-block">
-      <textarea placeholder="请输入内容" class="layui-textarea" name="desc"></textarea>
-    </div>
-  </div>
- 
-  <div class="layui-form-item">
-    <div class="layui-input-block">
-      <button type="button" class="layui-btn layui-btn-normal" id="LAY-component-form-setval">赋值</button>
-      <button type="button" class="layui-btn layui-btn-normal" id="LAY-component-form-getval">取值</button>
-      <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-    </div>
-  </div>
-</form>
-
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+              
           
 <script src="layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-layui.use(['form', 'layedit', 'laydate'], function(){
-  var form = layui.form
-  ,layer = layui.layer
-  ,layedit = layui.layedit
-  ,laydate = layui.laydate;
-  
-   
-  //自定义验证规则
-  form.verify({
-    title: function(value){
-      if(value.length < 5){
-        return '标题至少得5个字符啊';
-      }
-    }
-    ,pass: [
-      /^[\S]{6,12}$/
-      ,'密码必须6到12位，且不能出现空格'
-    ]
-    ,content: function(value){
-      layedit.sync(editIndex);
-    }
-  });
-  
-  
-  //监听提交
-  form.on('submit(demo1)', function(data){
-    layer.alert(JSON.stringify(data.field), {
-      title: '最终的提交信息'
-    })
-    return false;
-  });
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
  
-  //表单赋值
-  layui.$('#LAY-component-form-setval').on('click', function(){
-    form.val('example', {
-      "username": "贤心" // "name": "value"
-      ,"password": "123456"
-      ,"interest": 1
-      ,"like[write]": true //复选框选中状态
-      ,"close": true //开关状态
-      ,"sex": "女"
-      ,"desc": "我爱 layui"
-    });
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'/test/table/demo1.json'
+    ,toolbar: '#toolbarDemo1' //开启头部工具栏，并为其绑定左侧模板
+    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+      title: '提示'
+      ,layEvent: 'LAYTABLE_TIPS'
+      ,icon: 'layui-icon-tips'
+    }]
+    ,title: '用户数据表'
+    ,cols: [[
+      {type: 'checkbox', fixed: 'left'}
+      ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
+      ,{field:'username', title:'用户名', width:120, edit: 'text'}
+      ,{field:'email', title:'邮箱', width:150, edit: 'text', templet: function(res){
+        return '<em>'+ res.email +'</em>'
+      }}
+      ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
+      ,{field:'city', title:'城市', width:100}
+      ,{field:'sign', title:'签名'}
+      ,{field:'experience', title:'积分', width:80, sort: true}
+      ,{field:'ip', title:'IP', width:120}
+      ,{field:'logins', title:'登入次数', width:100, sort: true}
+      ,{field:'joinTime', title:'加入时间', width:120}
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+    ]]
+    ,page: true
   });
   
-  //表单取值
-  layui.$('#LAY-component-form-getval').on('click', function(){
-    var data = form.val('example');
-    alert(JSON.stringify(data));
+  //头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      break;
+      case 'getCheckLength':
+        var data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+      break;
+      case 'isAll':
+        layer.msg(checkStatus.isAll ? '全选': '未全选');
+      break;
+      
+      //自定义头工具栏右侧图标 - 提示
+      case 'LAYTABLE_TIPS':
+        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+      break;
+    };
   });
   
+  //监听行工具事件
+  table.on('tool(test)', function(obj){
+    var data = obj.data;
+    //console.log(obj)
+    if(obj.event === 'del'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event === 'edit'){
+      layer.prompt({
+        formType: 2
+        ,value: data.email
+      }, function(value, index){
+        obj.update({
+          email: value
+        });
+        layer.close(index);
+      });
+    }
+  });
 });
 </script>
 

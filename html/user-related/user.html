@@ -49,8 +49,8 @@
               <div class="layui-input-inline">
                 <select name="enable">
                   <option value="" selected="">全部</option>
-                  <option value="0">无效</option>
-                  <option value="1">有效</option>
+                  <option value="0">正常</option>
+                  <option value="1">封禁</option>
                 </select>
               </div>
             </div>
@@ -86,9 +86,12 @@
                   autocomplete="off"
                   class="layui-input"
                 />
-                
               </div>
-              <label class="layui-form-label" style="width: 20px;margin-right: 10px;">~</label>
+              <label
+                class="layui-form-label"
+                style="width: 20px;margin-right: 10px;"
+                >~</label
+              >
 
               <div class="layui-input-inline">
                 <input
@@ -103,45 +106,50 @@
             </div>
 
             <div class="layui-form-item">
-              
               <label class="layui-form-label">发表博客</label>
               <div class="layui-input-inline">
-                  <select name="blogType">
-                    <option value="" selected="">全部</option>
-                    <option value="0">仅原创</option>
-                    <option value="1">仅转载</option>
-                    <option value="2">仅草稿</option>
-                    <option value="3">非草稿</option>
+                <select name="blogType">
+                  <option value="" selected="">全部</option>
+                  <option value="0">仅原创</option>
+                  <option value="1">仅转载</option>
+                  <option value="2">仅草稿</option>
+                  <option value="3">非草稿</option>
+                </select>
+              </div>
+              <div class="layui-input-inline" style="margin-left: 20px;">
+                <input
+                  type="text"
+                  name="blogCountQ"
+                  id="blogCountQ"
+                  placeholder="发表数起"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 40px;margin-right: 30px;"
+                >~</label
+              >
 
-                  </select>
-                </div>
-                <div class="layui-input-inline" style="margin-left: 20px;">
-                    <input
-                      type="text"
-                      name="blogCountQ"
-                      id="blogCountQ"
-                      placeholder="发表数起"
-                      autocomplete="off"
-                      class="layui-input"
-                    />
-                    
-                  </div>
-                  <label class="layui-form-label" style="width: 20px;margin-right: 10px;">~</label>
-    
-                  <div class="layui-input-inline">
-                    <input
-                      type="text"
-                      name="blogCountZ"
-                      id="blogCountZ"
-                      placeholder="发表数止"
-                      autocomplete="off"
-                      class="layui-input"
-                    />
-                  </div>
-                  <div class="layui-input-inline" style="margin-left: 125px;">
-                      <button type="button" class="layui-btn" id="userSearchFormBtn">确定</button>
-                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                    </div>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="blogCountZ"
+                  id="blogCountZ"
+                  placeholder="发表数止"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+              <div class="layui-input-inline" style="margin-left: 140px;">
+                <button type="button" class="layui-btn" id="userSearchFormBtn">
+                  确定
+                </button>
+                <button type="reset" class="layui-btn layui-btn-primary">
+                  重置
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -325,7 +333,7 @@
                     name="enable"
                     lay-skin="switch"
                     lay-filter="switchTest"
-                    lay-text="有效|无效"
+                    lay-text="正常|封禁"
                   />
                 </div>
               </div>

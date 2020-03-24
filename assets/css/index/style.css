@@ -4054,3 +4054,17 @@ div#editForm .layui-form-label{
   padding: 9px 5px;
   width: 70px;
 }
+
+#articleSearchForm .layui-form-item .layui-input-inline{
+  width: 160px;
+}
+#articleSearchForm .layui-form-label{
+  padding: 9px 5px;
+  width: 70px;
+}
+.ml{
+  margin-left: 9%; 
+}
+li[lay-id=home] i.layui-tab-close{
+  display: none;
+}
