@@ -51,9 +51,8 @@
               </div>
               <label class="layui-form-label">专栏名称</label>
               <div class="layui-input-inline">
-                  <div id="columnName"></div>
-
-                </div>
+                <div id="columnName"></div>
+              </div>
             </div>
             <div class="layui-form-item">
               <label class="layui-form-label">状态</label>
@@ -105,7 +104,11 @@
             </div>
             <div class="layui-form-item">
               <div class="layui-input-inline" style="margin-left: 805px;">
-                <button type="button" class="layui-btn" id="articleSearchFormBtn">
+                <button
+                  type="button"
+                  class="layui-btn"
+                  id="articleSearchFormBtn"
+                >
                   确定
                 </button>
                 <button type="reset" class="layui-btn layui-btn-primary">
@@ -116,14 +119,142 @@
           </form>
         </div>
         <div class="card-body">
-            <table class="layui-hide" id="articleForm" lay-filter="articleForm"></table>
-            <script type="text/html" id="articleToolbar">
-              <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" lay-event="checkAll">批量审核</button>
-                <button class="layui-btn layui-btn-sm" lay-event="deleteAll">批量作废</button>
-                <button class="layui-btn layui-btn-sm" lay-event="recoverAll">批量恢复</button>
+          <table
+            class="layui-hide"
+            id="articleForm"
+            lay-filter="articleForm"
+          ></table>
+          <script type="text/html" id="articleToolbar">
+            <div class="layui-btn-container">
+              <button class="layui-btn layui-btn-sm" lay-event="checkAll">批量审核</button>
+              <button class="layui-btn layui-btn-sm" lay-event="deleteAll">批量作废</button>
+              <button class="layui-btn layui-btn-sm" lay-event="recoverAll">批量恢复</button>
+            </div>
+          </script>
+          <div id="articleViewForm" style="margin:4%;display: none;">
+            <form
+              class="layui-form layui-form-pane"
+              lay-filter="articleViewForm"
+            >
+              <div class="layui-form-item">
+                <div class="layui-inline">
+                  <label class="layui-form-label">标题</label>
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="title"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
+                </div>
+
+                <div class="layui-inline">
+                  <label class="layui-form-label">博客ID</label>
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="blogId"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
+                </div>
+                <div class="layui-inline">
+                  <label class="layui-form-label">类型</label>
+                  <div class="layui-input-inline" style="width: 75px;">
+                    <input
+                      type="text"
+                      name="type"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="layui-inline"
+                  style="width: 65px;margin: 0 5px 13px 0;"
+                >
+                  <div class="layui-input-inline" style="width: 100%;">
+                    <button
+                      type="button"
+                      class="layui-btn layui-btn-primary"
+                      id="coverBtn"
+                    >
+                      封面
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="layui-inline"
+                  style="width: 65px;margin: 0 0 13px 0;"
+                >
+                  <div class="layui-input-inline" style="width: 100%;">
+                    <button
+                      type="button"
+                      class="layui-btn layui-btn-primary"
+                      id="contentBtn"
+                    >
+                      正文
+                    </button>
+                  </div>
+                </div>
               </div>
-            </script>
+              <div class="layui-form-item">
+                <div class="layui-inline">
+                  <label class="layui-form-label">作者ID</label>
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="userId"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
+                </div>
+                <div class="layui-inline">
+                  <label class="layui-form-label">创建时间</label>
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="createTime"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
+                </div>
+
+                <div class="layui-inline">
+                  <label class="layui-form-label">专栏名称</label>
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="columnName"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="layui-form-item"></div>
+
+              <div class="layui-form-item layui-form-text">
+                <label
+                  class="layui-form-label"
+                  style="width: 100%;padding: 8px 15px;"
+                  >作废原因</label
+                >
+                <div class="layui-input-block">
+                  <textarea
+                    placeholder=""
+                    class="layui-textarea"
+                    name="reason" readonly=""
+                  ></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

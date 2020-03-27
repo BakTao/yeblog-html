@@ -3,9 +3,9 @@ var host="http://localhost:8888/api"
 
 
 //透明弹框
-function alertmsgtm(msg) {
+function alertmsgTm(msg) {
     layui.use('layer', function () {
-        var $ = layui.jquery, layer = layui.layer;
+        layer = layui.layer;
 
         layer.msg(msg, {
             area: ['300px', '110px'],
@@ -16,10 +16,10 @@ function alertmsgtm(msg) {
     });
 }
 
-//非透明弹框
-function alertmsgtmftm(msg) {
+//非透明弹框(关闭全部)
+function alertmsgFtm(msg) {
     layui.use('layer', function () {
-        var $ = layui.jquery, layer = layui.layer;
+        layer = layui.layer;
 
         layer.open({
             offset: "auto"
@@ -29,6 +29,24 @@ function alertmsgtmftm(msg) {
             //,shade: 0 //不显示遮罩
             ,yes: function(){
               layer.closeAll();
+            }
+        });
+
+    });
+}
+//非透明弹框(关闭当前)
+function alertmsgFtmIndex(msg) {
+    layui.use('layer', function () {
+        layer = layui.layer;
+
+        layer.open({
+            offset: "auto"
+            ,content: '<p>'+ msg +'</p>'
+            ,btn: '关闭'
+            ,btnAlign: 'c' //按钮居中
+            //,shade: 0 //不显示遮罩
+            ,yes: function(index){
+              layer.close(index);
             }
         });
 

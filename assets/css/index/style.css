@@ -4037,16 +4037,26 @@ body:not(.sidebar-mini) .sidebar-style-3 .sidebar-menu li.active ul.dropdown-men
   }
 }
 
-div#editForm .layui-form-item .layui-input-inline{
-  width: 175px
+/* 查询表单右移 */
+.ml{
+  margin-left: 9%; 
 }
-div#editForm .layui-form-label{
-  padding: 9px 5px;
-  width: 95px;
-}
+
+/* 操作按钮 */
 .layui-layer-btn .layui-layer-btn0{
   color: white !important
 }
+
+/* 用户信息的查看 */
+div#userViewForm .layui-form-item .layui-input-inline{
+  width: 175px
+}
+div#userViewForm .layui-form-label{
+  padding: 9px 5px;
+  width: 95px;
+}
+
+/* 用户信息的查询 */
 #userSearchForm .layui-form-item .layui-input-inline{
   width: 160px;
 }
@@ -4055,6 +4065,7 @@ div#editForm .layui-form-label{
   width: 70px;
 }
 
+/* 文章管理的查询 */
 #articleSearchForm .layui-form-item .layui-input-inline{
   width: 160px;
 }
@@ -4062,9 +4073,17 @@ div#editForm .layui-form-label{
   padding: 9px 5px;
   width: 70px;
 }
-.ml{
-  margin-left: 9%; 
+
+/* 文章管理的查看 */
+div#articleViewForm .layui-form-pane .layui-form-label {
+  width: 80px;
+  padding: 8px 10px;
 }
-li[lay-id=home] i.layui-tab-close{
-  display: none;
+div#articleViewForm .layui-form-item .layui-input-inline{
+  width: 165px;
+}
+
+/* 专栏管理的查询 */
+#columnSearchForm .layui-form-label{
+  padding: 9px 10px;
 }

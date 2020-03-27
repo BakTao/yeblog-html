@@ -14,11 +14,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
 
     //为专栏名称下拉框赋值
     var columnId = xmSelect.render({
-        el: '#columnName', 
+        el: '#columnName',
         filterable: true,
         paging: true,
         pageSize: 4,
         name: 'columnId',
+        toolbar: {show: true},
         data: []
     })
 
@@ -27,8 +28,8 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         type: "post",
         contentType: "application/json",
         data: JSON.stringify({}),
-        success: function(data){
-            columnId.update({"data": data.body})
+        success: function (data) {
+            columnId.update({ "data": data.body })
         }
     })
 
@@ -59,9 +60,9 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 field: 'enable', title: '状态', width: 80, align: 'center', sort: true, templet: function (res) {
                     if (res.enable == "0") {
                         return '<button type="button" class="btn btn-danger" style="height: 100%;width: 100%;padding:0;">已作废</button>'
-                    } else if(res.enable == "1"){
+                    } else if (res.enable == "1") {
                         return '<button type="button" class="btn btn-success" style="height: 100%;width: 100%;padding:0;">已审核</button>'
-                    } else if(res.enable == "2"){
+                    } else if (res.enable == "2") {
                         return '<button type="button" class="btn btn-dark" style="height: 100%;width: 100%;padding:0;">未审核</button>'
                     }
 
@@ -92,10 +93,10 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                     if (res.enable == "0") {
                         return ' <a class="layui-btn layui-btn-xs" lay-event="view" style="color:white;">查看</a> <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="recover" style="color:white;">恢复</a>'
 
-                    } else if (res.enable == "1"){
+                    } else if (res.enable == "1") {
                         return ' <a class="layui-btn layui-btn-xs" lay-event="view" style="color:white;">查看</a> <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete" style="color:white;">作废</a>'
 
-                    } else if (res.enable == "2"){
+                    } else if (res.enable == "2") {
                         return ' <a class="layui-btn layui-btn-xs" lay-event="view" style="color:white;">查看</a> <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="check" style="color:white;">审核</a><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete" style="color:white;">作废</a>'
 
                     }
@@ -116,21 +117,21 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             case 'deleteAll':
                 var data = checkStatus.data;
                 if (data.length == 0) {
-                    alertmsgtmftm("请选择至少一行再操作");
+                    alertmsgFtm("请选择至少一行再操作");
                     return false;
                 }
 
                 var blogId = '';
                 for (var i = 0; i < data.length - 1; i++) {
                     if (data[i].enable == "0") {
-                        alertmsgtmftm("所选行有已被作废的文章,请去除");
+                        alertmsgFtm("所选行有已被作废的文章,请去除");
                         return false;
                     } else {
                         blogId = blogId + data[i].blogId + ",";
                     }
                 }
                 if (data[data.length - 1].enable == "0") {
-                    alertmsgtmftm("所选行有已被作废的文章,请去除");
+                    alertmsgFtm("所选行有已被作废的文章,请去除");
                     return false;
                 } else {
                     blogId = blogId + data[i].blogId;
@@ -169,11 +170,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                 }),
                                 success: function (data) {
                                     if (data.body == "success") {
-                                        alertmsgtmftm("操作成功")
+                                        alertmsgFtm("操作成功")
                                         articleFormTable.reload();
                                     }
                                     else {
-                                        alertmsgtmftm("操作失败,请稍后再试")
+                                        alertmsgFtm("操作失败,请稍后再试")
                                     }
                                 },
                             })
@@ -202,21 +203,21 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             case 'recoverAll':
                 var data = checkStatus.data;
                 if (data.length == 0) {
-                    alertmsgtmftm("请选择至少一行再操作");
+                    alertmsgFtm("请选择至少一行再操作");
                     return false;
                 }
 
                 var blogId = '';
                 for (var i = 0; i < data.length - 1; i++) {
                     if (data[i].enable != "0") {
-                        alertmsgtmftm("只能选择已作废的文章,请重新选择");
+                        alertmsgFtm("只能选择已作废的文章,请重新选择");
                         return false;
                     } else {
                         blogId = blogId + data[i].blogId + ",";
                     }
                 }
                 if (data[data.length - 1].enable != "0") {
-                    alertmsgtmftm("只能选择已作废的文章,请重新选择");
+                    alertmsgFtm("只能选择已作废的文章,请重新选择");
                     return false;
                 } else {
                     blogId = blogId + data[i].blogId;
@@ -243,36 +244,36 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             }),
                             success: function (data) {
                                 if (data.body == "success") {
-                                    alertmsgtmftm("操作成功")
+                                    alertmsgFtm("操作成功")
                                     articleFormTable.reload();
                                 }
                                 else {
-                                    alertmsgtmftm("操作失败,请稍后再试")
+                                    alertmsgFtm("操作失败,请稍后再试")
                                 }
                             },
                         })
                     }
                 });
                 break;
-                //批量审核
-                case 'checkAll':
+            //批量审核
+            case 'checkAll':
                 var data = checkStatus.data;
                 if (data.length == 0) {
-                    alertmsgtmftm("请选择至少一行再操作");
+                    alertmsgFtm("请选择至少一行再操作");
                     return false;
                 }
 
                 var blogId = '';
                 for (var i = 0; i < data.length - 1; i++) {
                     if (data[i].enable != "2") {
-                        alertmsgtmftm("只能选择未审核的文章,请重新选择");
+                        alertmsgFtm("只能选择未审核的文章,请重新选择");
                         return false;
                     } else {
                         blogId = blogId + data[i].blogId + ",";
                     }
                 }
                 if (data[data.length - 1].enable != "2") {
-                    alertmsgtmftm("只能选择未审核的文章,请重新选择");
+                    alertmsgFtm("只能选择未审核的文章,请重新选择");
                     return false;
                 } else {
                     blogId = blogId + data[i].blogId;
@@ -299,11 +300,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             }),
                             success: function (data) {
                                 if (data.body == "success") {
-                                    alertmsgtmftm("操作成功")
+                                    alertmsgFtm("操作成功")
                                     articleFormTable.reload();
                                 }
                                 else {
-                                    alertmsgtmftm("操作失败,请稍后再试")
+                                    alertmsgFtm("操作失败,请稍后再试")
                                 }
                             },
                         })
@@ -350,11 +351,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             }),
                             success: function (data) {
                                 if (data.body == "success") {
-                                    alertmsgtmftm("操作成功")
+                                    alertmsgFtm("操作成功")
                                     articleFormTable.reload();
                                 }
                                 else {
-                                    alertmsgtmftm("操作失败,请稍后再试")
+                                    alertmsgFtm("操作失败,请稍后再试")
                                 }
                             },
                         })
@@ -402,11 +403,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                         }),
                         success: function (data) {
                             if (data.body == "success") {
-                                alertmsgtmftm("操作成功")
+                                alertmsgFtm("操作成功")
                                 articleFormTable.reload();
                             }
                             else {
-                                alertmsgtmftm("操作失败,请稍后再试")
+                                alertmsgFtm("操作失败,请稍后再试")
                             }
                         },
                     })
@@ -435,49 +436,80 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                         }),
                         success: function (data) {
                             if (data.body == "success") {
-                                alertmsgtmftm("操作成功")
+                                alertmsgFtm("操作成功")
                                 articleFormTable.reload();
                             }
                             else {
-                                alertmsgtmftm("操作失败,请稍后再试")
+                                alertmsgFtm("操作失败,请稍后再试")
                             }
                         },
                     })
                 }
             });
-        }else if (obj.event === 'view') {
-            // layer.open({
-            //     title: "编辑用户信息"
-            //     , type: 1
-            //     , area: ['70%', '85%']
-            //     , offset: ['10%', '25%']
-            //     , content: $("div #editForm")
-            //     , btn: ['关闭']
-            //     , btnAlign: 'c' //按钮居中
-            //     , shade: 0 //不显示遮罩
-            //     , yes: function () {
-            //         layer.closeAll();
-            //     }
-            // });
-            // form.val('editForm', {
-            //     "name": data.name // "name": "value"
-            //     , "sex": data.sex
-            //     , "loginId": data.loginId
-            //     , "password": data.password
-            //     , "phone": data.phone
-            //     , "email": data.email
-            //     , "regTime": data.regTime
-            //     , "blogCount": data.blogCount
-            //     , "ownBlogCount": data.ownBlogCount
-            //     , "noOwnBlogCount": data.noOwnBlogCount
-            //     , "testBlogCount": data.testBlogCount
-            //     , "lastLogIp": data.lastLogIp
-            //     , "lastLogTime": data.lastLogTime
-            //     , "enable": data.enable == "1"
-            //     , "reason": data.reason
-            // });
-            //$("#userPhoto").attr("src",data.userPhoto)
+        } else if (obj.event === 'view') {
+            layer.open({
+                title: "查看博客信息"
+                , type: 1
+                , area: ['70%', '85%']
+                , offset: ['10%', '25%']
+                , content: $("div #articleViewForm")
+                , btn: ['关闭']
+                , btnAlign: 'c' //按钮居中
+                , shade: 0 //不显示遮罩
+                , yes: function () {
+                    layer.closeAll();
+                }
+            });
+            var type = '';
+            if (data.type == "0") {
+                type = "原创"
+            } else if (data.type == "1") {
+                type = "转载"
+            } else if (data.type == "2") {
+                type = "草稿"
+            }
+            form.val('articleViewForm', {
+                "title": data.title // "name": "value"
+                , "blogId": data.blogId
+                , "userId": data.userId
+                , "type": type
+                , "columnName": data.columnName
+                , "createTime": data.createTime
+                , "reason": data.reason
+
+            });
+
         }
+        $("#coverBtn").on('click', function () {
+            var imgHtml = "<img src='' width='600px' height='400px'/>";
+            layer.open({
+                type: 1,
+                shade: 0.8,
+                offset: 'auto',
+                area: [600 + 'px', 400 + 'px'],
+                shadeClose: true,
+                scrollbar: false,
+                title: false, //不显示标题  
+                content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响  
+                cancel: function () {
+                    //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });  
+                }
+            });
+        })
+
+        $("#contentBtn").on('click', function () {
+            layer.open({
+                title: "查看博客"
+                , type: 1
+                , area: ['90%', '85%']
+                , content: data.content
+                , btn: ['关闭']
+                , btnAlign: 'c' //按钮居中
+                , yes: function (index) {
+                    layer.close(index);
+                }
+            });
+        })
     });
 
     //查询
@@ -491,4 +523,6 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         })
         return false;
     });
+
+
 });

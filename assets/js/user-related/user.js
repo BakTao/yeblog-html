@@ -4,7 +4,7 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         , layer = layui.layer
         , layedit = layui.layedit
         , laydate = layui.laydate;
-        
+
     form.render();
     laydate.render({
         elem: '#regTimeQ'
@@ -55,7 +55,7 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
 
             , { field: 'lastLogIp', title: '上次登录IP', width: 160, align: 'center' }
             , { field: 'lastLogTime', title: '上次登录时间', width: 180, align: 'center', sort: true }
-            , { field: 'blogCount', title: '博客数', width: 100, align: 'center', sort: true }
+            , { field: 'blogCountHj', title: '博客数', width: 100, align: 'center', sort: true }
             , {
                 fixed: 'oper', title: '操作', fixed: 'right', align: 'center', width: 150, templet: function (res) {
                     if (res.enable == "1") {
@@ -109,11 +109,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             }),
                             success: function (data) {
                                 if (data.body == "success") {
-                                    alertmsgtmftm("操作成功")
+                                    alertmsgFtm("操作成功")
                                     userFormTable.reload();
                                 }
                                 else {
-                                    alertmsgtmftm("操作失败,请稍后再试")
+                                    alertmsgFtm("操作失败,请稍后再试")
                                 }
                             },
                         })
@@ -161,11 +161,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                         }),
                         success: function (data) {
                             if (data.body == "success") {
-                                alertmsgtmftm("操作成功")
+                                alertmsgFtm("操作成功")
                                 userFormTable.reload();
                             }
                             else {
-                                alertmsgtmftm("操作失败,请稍后再试")
+                                alertmsgFtm("操作失败,请稍后再试")
                             }
                         },
                     })
@@ -173,11 +173,11 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             });
         } else if (obj.event === 'view') {
             layer.open({
-                title: "编辑用户信息"
+                title: "查看用户信息"
                 , type: 1
                 , area: ['70%', '85%']
                 , offset: ['10%', '25%']
-                , content: $("div #editForm")
+                , content: $("div #userViewForm")
                 , btn: ['关闭']
                 , btnAlign: 'c' //按钮居中
                 , shade: 0 //不显示遮罩
@@ -185,7 +185,7 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                     layer.closeAll();
                 }
             });
-            form.val('editForm', {
+            form.val('userViewForm', {
                 "name": data.name // "name": "value"
                 , "sex": data.sex
                 , "loginId": data.loginId
@@ -209,7 +209,7 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
     //查询
     layui.$('#userSearchFormBtn').on('click', function () {
         var data = form.val('userSearchForm');
-        table.reload('userForm',{
+        table.reload('userForm', {
             where: data,
             url: host + "/back/userServices/pageUserInfo",
             method: "post",

@@ -11,7 +11,7 @@ jQuery(document).ready(function () {
             $('#loginform .error').fadeIn('fast', function () {
                 $('#loginform .username').focus();
             });
-            alertmsgtm('用户名不能为空')
+            alertmsgTm('用户名不能为空')
             return false;
         }
         if (password == '') {
@@ -21,7 +21,7 @@ jQuery(document).ready(function () {
             $('#loginform .error').fadeIn('fast', function () {
                 $('#loginform .password').focus();
             });
-            alertmsgtm('密码不能为空')
+            alertmsgTm('密码不能为空')
             return false;
         }
         if (username != '' && password != '') {
@@ -36,7 +36,7 @@ jQuery(document).ready(function () {
                 data:JSON.stringify(data),
                 success: function(data){
                     if(data.head.code == "601"){
-                        alertmsgtm(data.head.msg)
+                        alertmsgTm(data.head.msg)
                     }
                     else{
                         sessionStorage.setItem('token', data.body.token)
@@ -44,7 +44,7 @@ jQuery(document).ready(function () {
                     }
                 },
                 error: function(msg){
-                    alertmsgtmftm("操作失败,请稍后再试")
+                    alertmsgFtm("操作失败,请稍后再试")
                 }
             })
         }

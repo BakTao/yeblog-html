@@ -1,360 +1,108 @@
 <section class="section">
-        <div class="section-header">
-          <h1>文章管理</h1>
-          <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item">首页</div>
-            <div class="breadcrumb-item">用户相关</div>
-            <div class="breadcrumb-item">文章&专栏</div>
-            <div class="breadcrumb-item">专栏管理</div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="card-header" style="padding:15px 0;">
-                <form
-                  id="userSearchForm"
-                  class="layui-form"
-                  lay-filter="userSearchForm"
-                >
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">名称</label>
-                    <div class="layui-input-inline">
-                      <input
-                        type="text"
-                        name="name"
-                        autocomplete="off"
-                        placeholder="名称"
-                        class="layui-input"
-                      />
-                    </div>
-                    <label class="layui-form-label">登录名</label>
-                    <div class="layui-input-inline">
-                      <input
-                        type="text"
-                        name="loginId"
-                        autocomplete="off"
-                        placeholder="登录名"
-                        class="layui-input"
-                      />
-                    </div>
-                    <label class="layui-form-label">性别</label>
-                    <div class="layui-input-inline">
-                      <select name="sex">
-                        <option value="" selected="">全部</option>
-                        <option value="男">男</option>
-                        <option value="女">女</option>
-                      </select>
-                    </div>
-                    <label class="layui-form-label">状态</label>
-                    <div class="layui-input-inline">
-                      <select name="enable">
-                        <option value="" selected="">全部</option>
-                        <option value="0">无效</option>
-                        <option value="1">有效</option>
-                      </select>
-                    </div>
-                  </div>
-      
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">手机</label>
-                    <div class="layui-input-inline">
-                      <input
-                        type="text"
-                        name="phone"
-                        autocomplete="off"
-                        placeholder="手机号"
-                        class="layui-input"
-                      />
-                    </div>
-                    <label class="layui-form-label">邮箱</label>
-                    <div class="layui-input-inline">
-                      <input
-                        type="text"
-                        name="email"
-                        placeholder="邮箱"
-                        autocomplete="off"
-                        class="layui-input"
-                      />
-                    </div>
-                    <label class="layui-form-label">注册时间</label>
-                    <div class="layui-input-inline">
-                      <input
-                        type="text"
-                        name="regTimeQ"
-                        id="regTimeQ"
-                        placeholder="注册时间起"
-                        autocomplete="off"
-                        class="layui-input"
-                      />
-                    </div>
-                    <label
-                      class="layui-form-label"
-                      style="width: 20px;margin-right: 10px;"
-                      >~</label
-                    >
-      
-                    <div class="layui-input-inline">
-                      <input
-                        type="text"
-                        name="regTimeZ"
-                        id="regTimeZ"
-                        placeholder="注册时间止"
-                        autocomplete="off"
-                        class="layui-input"
-                      />
-                    </div>
-                  </div>
-      
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">发表博客</label>
-                    <div class="layui-input-inline">
-                      <select name="blogType">
-                        <option value="" selected="">全部</option>
-                        <option value="0">仅原创</option>
-                        <option value="1">仅转载</option>
-                        <option value="2">仅草稿</option>
-                        <option value="3">非草稿</option>
-                      </select>
-                    </div>
-                    <div class="layui-input-inline" style="margin-left: 20px;">
-                      <input
-                        type="text"
-                        name="blogCountQ"
-                        id="blogCountQ"
-                        placeholder="发表数起"
-                        autocomplete="off"
-                        class="layui-input"
-                      />
-                    </div>
-                    <label
-                      class="layui-form-label"
-                      style="width: 20px;margin-right: 10px;"
-                      >~</label
-                    >
-      
-                    <div class="layui-input-inline">
-                      <input
-                        type="text"
-                        name="blogCountZ"
-                        id="blogCountZ"
-                        placeholder="发表数止"
-                        autocomplete="off"
-                        class="layui-input"
-                      />
-                    </div>
-                    <div class="layui-input-inline" style="margin-left: 125px;">
-                      <button type="button" class="layui-btn" id="userSearchFormBtn">
-                        确定
-                      </button>
-                      <button type="reset" class="layui-btn layui-btn-primary">
-                        重置
-                      </button>
-                    </div>
-                  </div>
-                </form>
+  <div class="section-header">
+    <h1>专栏管理</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item">首页</div>
+      <div class="breadcrumb-item">用户相关</div>
+      <div class="breadcrumb-item">文章&专栏</div>
+      <div class="breadcrumb-item">专栏管理</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header" style="padding:15px 70px;">
+          <form
+            id="columnSearchForm"
+            class="layui-form"
+            lay-filter="columnSearchForm"
+          >
+            <div class="layui-form-item">
+              <label class="layui-form-label">专栏ID</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="columnId"
+                  autocomplete="off"
+                  placeholder="专栏ID"
+                  class="layui-input"
+                />
               </div>
-              <div class="card-body">
-                <table class="layui-hide" id="userForm" lay-filter="userForm"></table>
-                <div id="editForm" style="margin:4%;display: none;">
-                  <form class="layui-form" lay-filter="editForm">
-                    <div class="layui-form-item">
-                      <label class="layui-form-label">名称</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="name"
-                          autocomplete="off"
-                          placeholder="名称"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                      <label class="layui-form-label">性别</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="radio"
-                          name="sex"
-                          value="男"
-                          title="男"
-                          checked=""
-                        />
-                        <input type="radio" name="sex" value="女" title="女" />
-                      </div>
-                      <label class="layui-form-label">头像</label>
-                      <div class="layui-input-inline">
-                        <img
-                          src=""
-                          id="userPhoto"
-                          name="userPhoto"
-                          style="width: 175px;height: 190px; position: absolute;"
-                        />
-                      </div>
-                    </div>
-                    <div class="layui-form-item">
-                      <label class="layui-form-label">登录名</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="loginId"
-                          autocomplete="off"
-                          placeholder="登录名"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                      <label class="layui-form-label">密码</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="password"
-                          placeholder="密码"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                    </div>
-      
-                    <div class="layui-form-item">
-                      <label class="layui-form-label">手机</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="phone"
-                          autocomplete="off"
-                          placeholder="手机号"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                      <label class="layui-form-label">邮箱</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="email"
-                          placeholder="邮箱"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                    </div>
-      
-                    <div class="layui-form-item">
-                      <label class="layui-form-label">注册时间</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="regTime"
-                          id="regTime"
-                          placeholder="注册时间"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-      
-                      <label class="layui-form-label">发表博客</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="blogCount"
-                          placeholder="0"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                    </div>
-                    <div class="layui-form-item">
-                      <label class="layui-form-label">原创博客</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="ownBlogCount"
-                          placeholder="0"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                      <label class="layui-form-label">转载博客</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="noOwnBlogCount"
-                          placeholder="0"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                      <label class="layui-form-label">草稿博客</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="testBlogCount"
-                          placeholder="0"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                    </div>
-                    <div class="layui-form-item">
-                      <label class="layui-form-label">上次登录IP</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="lastLogIp"
-                          placeholder="上次登录IP"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                      <label class="layui-form-label">上次登录时间</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="text"
-                          name="lastLogTime"
-                          id="lastLogTime"
-                          placeholder="上次登录时间"
-                          autocomplete="off"
-                          class="layui-input"
-                          readonly=""
-                        />
-                      </div>
-                      <label class="layui-form-label">状态</label>
-                      <div class="layui-input-inline">
-                        <input
-                          type="checkbox"
-                          checked=""
-                          name="enable"
-                          lay-skin="switch"
-                          lay-filter="switchTest"
-                          lay-text="有效|无效"
-                        />
-                      </div>
-                    </div>
-      
-                    <div class="layui-form-item layui-form-text">
-                      <label class="layui-form-label">失效原因</label>
-                      <div class="layui-input-inline" style="width: 86%;">
-                        <textarea
-                          placeholder=""
-                          class="layui-textarea"
-                          name="reason"
-                          readonly=""
-                        ></textarea>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+              <label class="layui-form-label">专栏名称</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="columnName"
+                  autocomplete="off"
+                  placeholder="专栏名称"
+                  class="layui-input"
+                />
+              </div>
+              <div class="layui-input-inline" style="margin-left: 30px;">
+                <button
+                  type="button"
+                  class="layui-btn"
+                  id="columnSearchFormBtn"
+                >
+                  确定
+                </button>
+                <button type="reset" class="layui-btn layui-btn-primary">
+                  重置
+                </button>
               </div>
             </div>
-          </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">博客数</label>
+              <div class="layui-input-inline">
+                <select name="blogType">
+                  <option value="" selected="">全部</option>
+                  <option value="0">仅原创</option>
+                  <option value="1">仅转载</option>
+                </select>
+              </div>
+              <div class="layui-input-inline" style="margin-left: 15px;">
+                <input
+                  type="text"
+                  name="blogCountQ"
+                  id="blogCountQ"
+                  placeholder="博客数起"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 40px;margin-right: 30px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="blogCountZ"
+                  id="blogCountZ"
+                  placeholder="博客数止"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+            </div>
+          </form>
         </div>
-      </section>
-      
+        <div class="card-body">
+          <table
+            class="layui-table"
+            id="columnForm"
+            lay-filter="columnForm"
+          ></table>
+          <script type="text/html" id="columnToolbar">
+            <div class="layui-btn-container">
+              <button class="layui-btn layui-btn-sm" lay-event="create">新增</button>
+            </div>
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../../assets/js/user-related/article-column/column.js"></script>
