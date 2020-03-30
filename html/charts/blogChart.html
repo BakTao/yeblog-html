@@ -1,0 +1,85 @@
+<section class="section">
+  <div class="section-header">
+    <h1>博客统计</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item">首页</div>
+      <div class="breadcrumb-item">统计相关</div>
+      <div class="breadcrumb-item">博客统计</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>按时间统计博客量</h4>
+          <div class="card-header-action">
+            <form
+              class="layui-form blogChart-form"
+              style="height: 100%;margin-left:0;"
+            >
+              <div class="layui-form-item">
+                <div class="layui-input-inline">
+                  <select id="type" name="type" lay-filter="type">
+                    <option value="0" selected="">按博客类型</option>
+                    <option value="1">按是否有效</option>
+                  </select>
+                </div>
+                <div
+                  class="layui-input-inline blogTypeDiv"
+                  style="display: none;"
+                >
+                  <select id="blogType" name="blogType" lay-filter="blogType">
+                    <option value="" selected="">全部</option>
+                    <option value="0">仅原创</option>
+                    <option value="1">仅转载</option>
+                    <option value="2">仅草稿</option>
+                    <option value="0,1">非草稿</option>
+                  </select>
+                </div>
+                <div class="layui-input-inline">
+                  <select id="sjwd" name="sjwd" lay-filter="sjwd">
+                    <option value="1" selected="">按年统计</option>
+                    <option value="2">按月统计</option>
+                    <option value="3">按天统计</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-body blogChart-div">
+          <div id="blog-chart" style="width: 100%;height: 400px;"></div>
+        </div>
+
+        <div class="card-header">
+          <h4>按专栏统计博客量</h4>
+          <div class="card-header-action">
+            <form class="layui-form blogChart-form2" style="height: 100%;">
+              <div class="layui-form-item">
+                <div class="layui-input-inline">
+                  <div id="columnNameSelect"></div>
+                </div>
+                <div class="layui-input-inline">
+                  <button
+                    type="button"
+                    class="layui-btn"
+                    id="columnNameSelectBtn"
+                  >
+                    确定
+                  </button>
+                  <button type="reset" class="layui-btn layui-btn-primary">
+                    重置
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-body blogChart-div2">
+          <div id="blog-chart2" style="width: 100%;height: 400px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../assets/js/charts/blogChart.js"></script>

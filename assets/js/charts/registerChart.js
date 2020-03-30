@@ -2,15 +2,17 @@ layui.use(['layer', 'jquery', 'form'], function () {
     var layer = layui.layer,
         $ = layui.jquery,
         form = layui.form;
+        form.render();
     //监听select改变事件
-    changeRegChart('1');
+    changeRegChart(sjwd);
     form.on('select(sjwd)', function(data){
-        changeRegChart(data.value);
+        sjwd = data.value;
+        changeRegChart(sjwd);
     });
 });
 
 var registerChart = echarts.init(document.getElementById('register-chart'));
-
+var sjwd = "1";
 $('.regChart-div').resize(function () {
     registerChart.resize();
 });
@@ -23,11 +25,9 @@ function changeRegChart(data){
     var nowMonth = date.getMonth()+1;
     var nowDay = date.getDate();
     if(sjwd == "1"){
-        $(".card-header h4").text("近5年的注册量统计")
         tjnyz = nowYear;
         tjnyq = nowYear-4;
     }else if(sjwd == "2"){
-        $(".card-header h4").text("近6月的注册量统计")
         var year = nowYear;
         var month = nowMonth-5;
         if(nowMonth < 10){
@@ -43,7 +43,6 @@ function changeRegChart(data){
         }
         tjnyq = ''+year+month;
     }else{
-        $(".card-header h4").text("近15天的注册量统计")
         if(nowMonth < 10){
             nowMonth = '0' + nowMonth;
         }
@@ -79,14 +78,31 @@ function changeRegChart(data){
 function initRegChart(data){
     var xData = [];
     var yData = [];
-
+    var title = "";
+    if(sjwd == "1"){
+        title = "近5年的注册量统计";
+    }else if(sjwd == "2"){
+        title = "近6月的注册量统计";
+    }else if(sjwd == "3"){
+        title = "近15天的注册量统计";
+    }
     for(var i = 0; i < data.length; i++){
         xData.push(data[i].tjny);
         yData.push(data[i].value);
     }
     option = {
+        title: {
+            text: title,
+            x:'center',
+            y:'top'
+        },
         tooltip: {
             trigger: 'axis'     //提示
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
         },
         xAxis: {
             type: 'category', 
@@ -94,10 +110,12 @@ function initRegChart(data){
                 interval: 0,    //间隔,显示因长度过长自动隐藏的x点
                 rotate: 20      //倾斜数,防止长度过长的x点重叠在一起
             },
+            name: '统计年月',
             data: xData
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            name: '注册量'
         },
         series: [{
             data: yData,
