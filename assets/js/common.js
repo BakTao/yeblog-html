@@ -1,5 +1,5 @@
 var host="http://localhost:8888/api"
-
+var uploadUrl = "http://169.254.211.25:9000"
 
 
 //透明弹框

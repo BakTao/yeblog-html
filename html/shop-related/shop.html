@@ -1,1 +1,382 @@
-<div>商城</div>
+<section class="section">
+  <div class="section-header">
+    <h1>商城管理</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item">首页</div>
+      <div class="breadcrumb-item">商城相关</div>
+      <div class="breadcrumb-item">商城管理</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <form
+            id="shopSearchForm"
+            class="layui-form"
+            lay-filter="shopSearchForm"
+          >
+            <div class="layui-form-item">
+              <label class="layui-form-label">商品ID</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="goodsId"
+                  autocomplete="off"
+                  placeholder="商品ID"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">商品名称</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="goodsName"
+                  autocomplete="off"
+                  placeholder="商品名称"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">类别</label>
+              <div class="layui-input-inline">
+                <div id="searchShopCategory"></div>
+              </div>
+
+              <div class="layui-input-inline" style="margin-left: 30px;">
+                <button
+                  type="button"
+                  class="layui-btn"
+                  lay-submit
+                  id="shopSearchFormBtn"
+                >
+                  确定
+                </button>
+                <button type="reset" class="layui-btn layui-btn-primary">
+                  重置
+                </button>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">商品数量</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="numsQ"
+                  placeholder="商品数量起"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 20px;margin-right: 10px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="numsZ"
+                  placeholder="商品数量止"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">被购数量</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="buyNumsQ"
+                  placeholder="被购数量起"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 20px;margin-right: 10px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="buyNumsZ"
+                  placeholder="被购数量止"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">商品价格</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="priceQ"
+                  placeholder="商品价格起"
+                  autocomplete="off"
+                  lay-verify="price"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 20px;margin-right: 10px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="priceZ"
+                  placeholder="商品价格止"
+                  autocomplete="off"
+                  lay-verify="price"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">生效</label>
+              <div class="layui-input-inline">
+                <select name="enable">
+                  <option value="" selected="">全部</option>
+                  <option value="0">下架</option>
+                  <option value="1">上架</option>
+                </select>
+              </div>
+              <label class="layui-form-label">类型</label>
+              <div class="layui-input-inline">
+                <select name="type">
+                  <option value="" selected="">全部</option>
+                  <option value="0">实物</option>
+                  <option value="1">电子</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-body">
+          <table
+            class="layui-table"
+            id="shopForm"
+            lay-filter="shopForm"
+          ></table>
+          <script type="text/html" id="shopToolbar">
+            <div class="layui-btn-container">
+              <button class="layui-btn layui-btn-sm" lay-event="createShop">新增商品</button>
+              <button class="layui-btn layui-btn-sm" lay-event="createCategory">新增类别</button>
+              <button class="layui-btn layui-btn-sm" lay-event="deleteCategory">删除类别</button>
+            </div>
+          </script>
+          <div id="shopCreateForm" style="margin:4%;display: none;">
+            <form class="layui-form" lay-filter="shopCreateForm">
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="goodsName"
+                    autocomplete="off"
+                    placeholder="商品名称"
+                    class="layui-input"
+                  />
+                </div>
+                <label class="layui-form-label">类别</label>
+                <div class="layui-input-inline">
+                  <div id="createShopCategory"></div>
+                </div>
+                <label class="layui-form-label">商品数量</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="nums"
+                    placeholder="商品数量"
+                    autocomplete="off"
+                    class="layui-input"
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">价格</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="price"
+                    autocomplete="off"
+                    placeholder="价格"
+                    class="layui-input"
+                  />
+                </div>
+                <label class="layui-form-label">是否是实物</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="0"
+                    title="是"
+                    lay-filter="type"
+                    checked=""
+                  />
+                  <input
+                    type="radio"
+                    name="type"
+                    value="1"
+                    title="否"
+                    lay-filter="type"
+                  />
+                </div>
+                <div
+                  class="layui-input-inline bookFileClass"
+                  style="display: none;"
+                >
+                  <input
+                    type="file"
+                    name="file"
+                    id="bookFile"
+                    style="color: transparent;"
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">商品简介</label>
+                <div class="layui-input-inline" style="width: 86%;">
+                  <textarea
+                    placeholder=""
+                    class="layui-textarea"
+                    name="content"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品图片</label>
+                <div class="layui-input-inline">
+                  <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="photo">
+                      上传图片
+                    </button>
+                    <div class="layui-upload-list">
+                      <img class="layui-upload-img" id="showPhoto" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div id="shopEditForm" style="margin:4%;display: none;">
+            <form class="layui-form" lay-filter="shopEditForm">
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="goodsName"
+                    autocomplete="off"
+                    placeholder="商品名称"
+                    class="layui-input"
+                  />
+                </div>
+                <label class="layui-form-label">类别</label>
+                <div class="layui-input-inline">
+                  <div id="editShopCategory"></div>
+                </div>
+                <label class="layui-form-label">商品数量</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="nums"
+                    placeholder="商品数量"
+                    autocomplete="off"
+                    class="layui-input"
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">价格</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="price"
+                    autocomplete="off"
+                    placeholder="价格"
+                    class="layui-input"
+                  />
+                </div>
+                <label class="layui-form-label">被购数量</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="buyNums"
+                    autocomplete="off"
+                    placeholder="被购数量"
+                    class="layui-input"
+                  />
+                </div>
+                <label class="layui-form-label">是否是实物</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="0"
+                    title="是"
+                    lay-filter="type"
+                    checked=""
+                  />
+                  <input
+                    type="radio"
+                    name="type"
+                    value="1"
+                    title="否"
+                    lay-filter="type"
+                  />
+                  <div><a href="#" name="bookFile"></a></div>
+                  <div
+                  class="bookFileClass"
+                  style="display: none;"
+                >
+                  <input
+                    type="file"
+                    name="file"
+                    id="editBookFile"
+                    style="color: transparent;"
+                  />
+                </div>
+                </div>
+                
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">商品简介</label>
+                <div class="layui-input-inline" style="width: 86%;">
+                  <textarea
+                    placeholder=""
+                    class="layui-textarea"
+                    name="content"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品图片</label>
+                <div class="layui-input-inline">
+                  <div class="layui-upload">
+                    <img id="nowPhoto" style="width: 200px;height: 200px;" />
+                    <button type="button" class="layui-btn" id="newPhotoBtn">
+                      上传图片
+                    </button>
+
+                    <div class="layui-upload-list">
+                      <img class="layui-upload-img" id="newPhoto"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../assets/js/shop-related/shop.js"></script>

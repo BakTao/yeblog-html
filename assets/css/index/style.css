@@ -4087,3 +4087,34 @@ div#articleViewForm .layui-form-item .layui-input-inline{
 #columnSearchForm .layui-form-label{
   padding: 9px 10px;
 }
+
+
+/* 商品管理的查看 */
+div#shopCreateForm .layui-form-item .layui-input-inline{
+  width: 175px
+}
+div#shopCreateForm .layui-form-label{
+  padding: 9px 5px;
+  width: 95px;
+}
+
+div#shopEditForm .layui-form-item .layui-input-inline{
+  width: 175px
+}
+div#shopEditForm .layui-form-label{
+  padding: 9px 5px;
+  width: 95px;
+}
+
+/* 商品管理的查询 */
+#shopSearchForm .layui-form-item .layui-input-inline{
+  width: 160px;
+}
+#shopSearchForm .layui-form-label{
+  padding: 9px 5px;
+  width: 70px;
+}
+.newPhotoStyle{
+  width: 500px;
+  height: 500px;
+}
