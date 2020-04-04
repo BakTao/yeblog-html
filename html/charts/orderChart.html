@@ -1,0 +1,72 @@
+<section class="section">
+  <div class="section-header">
+    <h1>订单统计</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item">首页</div>
+      <div class="breadcrumb-item">统计相关</div>
+      <div class="breadcrumb-item">订单统计</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>按商品统计订单金额</h4>
+          <div class="card-header-action">
+            <button type="button" class="layui-btn layui-btn-primary" id="orderTableExport">
+              导出
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table
+            class="layui-table"
+            id="orderTable"
+            lay-filter="orderTable"
+          ></table>
+        </div>
+
+        <div class="card-header">
+          <h4>按时间统计订单量</h4>
+          <div class="card-header-action">
+            <form class="layui-form orderChart-form1" style="height: 100%;">
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <select id="sjwd1" name="sjwd" lay-filter="sjwd1">
+                    <option value="1" selected="">按年统计</option>
+                    <option value="2">按月统计</option>
+                    <option value="3">按天统计</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-body orderChart-div1">
+          <div id="order-chart1" style="width: 100%;height: 400px;"></div>
+        </div>
+
+        <div class="card-header">
+          <h4>按时间统计订单金额</h4>
+          <div class="card-header-action">
+            <form class="layui-form orderChart-form2" style="height: 100%;">
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <select id="sjwd2" name="sjwd" lay-filter="sjwd2">
+                    <option value="1" selected="">按年统计</option>
+                    <option value="2">按月统计</option>
+                    <option value="3">按天统计</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-body orderChart-div2">
+          <div id="order-chart2" style="width: 100%;height: 400px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../assets/js/charts/orderChart.js"></script>

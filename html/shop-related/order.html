@@ -1,2 +1,242 @@
-<div>订单</div>
-<img src="http://169.254.211.25:9000/picture/pic/3c3b7bec675249f8bd5ce9ca5ef0544a.jpg"/>
+<section class="section">
+  <div class="section-header">
+    <h1>订单管理</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item">首页</div>
+      <div class="breadcrumb-item">商城相关</div>
+      <div class="breadcrumb-item">订单管理</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <form
+            id="orderSearchForm"
+            class="layui-form"
+            lay-filter="orderSearchForm"
+          >
+            <div class="layui-form-item">
+              <label class="layui-form-label">订单ID</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="orderId"
+                  autocomplete="off"
+                  placeholder="订单ID"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">订单人名称</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="userId"
+                  autocomplete="off"
+                  placeholder="订单人名称"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">状态</label>
+              <div class="layui-input-inline">
+                <select name="enable">
+                  <option value="" selected="">全部</option>
+                  <option value="0">已关闭</option>
+                  <option value="1">未完成</option>
+                  <option value="2">已完成</option>
+                </select>
+              </div>
+              <div class="layui-input-inline" style="margin-left: 30px;">
+                <button
+                  type="button"
+                  class="layui-btn"
+                  lay-submit
+                  id="orderSearchFormBtn"
+                >
+                  确定
+                </button>
+                <button type="reset" class="layui-btn layui-btn-primary">
+                  重置
+                </button>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">订单总价</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="priceQ"
+                  placeholder="订单总价起"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 20px;margin-right: 10px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="priceZ"
+                  placeholder="订单总价止"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">订单时间</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="createTimeQ"
+                  id="createTimeQ"
+                  placeholder="订单时间起"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 20px;margin-right: 10px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="createTimeZ"
+                  id="createTimeZ"
+                  placeholder="订单时间止"
+                  autocomplete="off"
+                  lay-verify="number"
+                  class="layui-input"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-body">
+          <table
+            class="layui-table"
+            id="orderForm"
+            lay-filter="orderForm"
+          ></table>
+
+          <div id="orderViewForm" style="margin:4%;display: none;">
+            <form class="layui-form" lay-filter="orderViewForm">
+              <div class="layui-form-item">
+                <label class="layui-form-label">订单ID</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="orderId"
+                    autocomplete="off"
+                    placeholder="订单ID"
+                    class="layui-input"
+                    readonly=""
+                  />
+                </div>
+                <label class="layui-form-label">订单人名称</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="userId"
+                    placeholder="订单人名称"
+                    autocomplete="off"
+                    class="layui-input"
+                    readonly=""
+                  />
+                </div>
+                <label class="layui-form-label">订单人手机</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="userPhone"
+                    autocomplete="off"
+                    placeholder="订单人手机"
+                    class="layui-input"
+                    readonly=""
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">收货地址</label>
+                <div class="layui-input-inline" style="width: 735px;">
+                  <input
+                    type="text"
+                    name="address"
+                    autocomplete="off"
+                    placeholder="收货地址"
+                    class="layui-input"
+                    readonly=""
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">创建时间</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="createTime"
+                    autocomplete="off"
+                    placeholder="创建时间"
+                    class="layui-input"
+                    readonly=""
+                  />
+                </div>
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="radio"
+                    name="enable"
+                    value=""
+                    title=""
+                    checked=""
+                  />
+                </div>
+              </div>
+
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-inline" style="width: 86%;">
+                  <textarea
+                    placeholder=""
+                    class="layui-textarea"
+                    name="remark"
+                    readonly=""
+                  ></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <table
+                  class="layui-table"
+                  id="orderShopForm"
+                  lay-filter="orderShopForm"
+                ></table>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">订单总价</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="price"
+                    autocomplete="off"
+                    placeholder="订单总价"
+                    class="layui-input"
+                    readonly=""
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../assets/js/shop-related/order.js"></script>

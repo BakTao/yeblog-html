@@ -8,18 +8,6 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
 
     form.render();
 
-    //验证
-    form.verify({
-        number:[
-            /^[0-9]*$/
-            ,'请填入0-9的数'
-        ],
-        price: [
-            /(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/
-          ,'价格只能是数字'
-        ]
-      });
-
     //为查询类别赋值
     var searchShopSelect = xmSelect.render({
         el: '#searchShopCategory',
@@ -154,6 +142,7 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                 $(".bookFileClass").css("display", "none")
                 $('#showPhoto').attr('src', '');
                 $('#showPhoto').removeClass("newPhotoStyle");   //限制大小
+                createShopSelect.setValue([ ]);
 
                 upload.render({
                     elem: '#photo'
@@ -207,6 +196,15 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                     , btnAlign: 'c' //按钮居中
                     , shade: 0 //不显示遮罩
                     , yes: function () {
+                        if($("div#shopCreateForm input[name=goodsName]").val() == "" 
+                        || $("div#shopCreateForm input[name=nums]").val() == "" 
+                        || $("div#shopCreateForm input[name=price]").val() == ""
+                        || $("div#shopCreateForm textarea[name=content]").val() == ""
+                        || createShopSelect.getValue("valueStr") == ""
+                        ){
+                            alertmsgFtmIndex("有空白项,请完整填写")
+                            return false;
+                        }
 
                         if(file == ""){
                             alertmsgFtmIndex("请上传商品图片")
@@ -218,6 +216,7 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                 return false;
                             }
                         }
+
                         $.ajax({
                             url: host + "/back/shopServices/createShop",
                             contentType: "application/json",
@@ -230,7 +229,7 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                 "type": $("div#shopCreateForm input[name=type]:checked").val(),
                                 "bookFile": bookFile,
                                 "content": $("div#shopCreateForm textarea[name=content]").val(),
-                                "categoryId": editShopSelect.getValue("valueStr")
+                                "categoryId": createShopSelect.getValue("valueStr")
                             }),
                             success: function (data) {
                                 if (data.body == "success") {
@@ -407,6 +406,7 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
             $('#newPhoto').removeClass("newPhotoStyle");   //限制大小
             $("#shopEditForm a[name=bookFile]").text("")
             $("#shopEditForm a[name=bookFile]").attr("href","#")
+            editShopSelect.setValue([ ]);
             form.render();
             layer.open({
                 title: "编辑商品信息"
@@ -418,6 +418,15 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                 , btnAlign: 'c' //按钮居中
                 , shade: 0 //不显示遮罩
                 , yes: function () {
+                    if($("div#shopEditForm input[name=goodsName]").val() == "" 
+                    || $("div#shopEditForm input[name=nums]").val() == "" 
+                    || $("div#shopEditForm input[name=buyNums]").val() == "" 
+                    || $("div#shopEditForm input[name=price]").val() == ""
+                    || $("div#shopEditForm textarea[name=content]").val() == ""
+                    || editShopSelect.getValue("valueStr") == ""){
+                        alertmsgFtmIndex("有空白项,请完整填写")
+                        return false;
+                    }
                     //将电子转为实物
                     if($("div#shopEditForm input[name=type]:checked").val() == "0"){
                         $.ajax({

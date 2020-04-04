@@ -217,10 +217,12 @@ function initBlogChart(data){
                 interval: 0,    //间隔,显示因长度过长自动隐藏的x点
                 rotate: 20      //倾斜数,防止长度过长的x点重叠在一起
             },
+            name: '统计年月',
             data: xData
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            name: '博客量'
         },
         series: seriesData
     };

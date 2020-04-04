@@ -4118,3 +4118,21 @@ div#shopEditForm .layui-form-label{
   width: 500px;
   height: 500px;
 }
+
+
+/* 订单管理的查询 */
+#orderSearchForm .layui-form-item .layui-input-inline{
+  width: 160px;
+}
+#orderSearchForm .layui-form-label{
+  padding: 9px 5px;
+  width: 80px;
+}
+/* 用户信息的查看 */
+div#orderViewForm .layui-form-item .layui-input-inline{
+  width: 175px
+}
+div#orderViewForm .layui-form-label{
+  padding: 9px 5px;
+  width: 95px;
+}
