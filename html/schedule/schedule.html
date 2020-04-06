@@ -1,0 +1,76 @@
+<section class="section">
+  <div class="section-header">
+    <h1>待办事项</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item">首页</div>
+      <div class="breadcrumb-item">待办相关</div>
+      <div class="breadcrumb-item">待办事项</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="layui-tab layui-tab-brief">
+          <ul class="layui-tab-title">
+            <li class="layui-this">消息<span class="layui-badge xxText">0</span></li>
+            <li>待办<span class="dbClass"></span></li>
+            <li>已办</li>
+          </ul>
+
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+              <button type="button" class="layui-btn layui-btn-primary" id="deleteBtn1">
+                删除
+              </button>
+              <button type="button" class="layui-btn layui-btn-primary" id="tjydBtn1">
+                标记已读
+              </button>
+              <button type="button" class="layui-btn layui-btn-primary" id="zwdbBtn1">
+                转为待办
+              </button>
+              <div>
+                    <table
+                    class="layui-table"
+                    id="scheduleXxTable"
+                    lay-filter="scheduleXxTable"
+                  ></table>
+              </div>
+            </div>
+            <div class="layui-tab-item">
+              <button type="button" class="layui-btn layui-btn-primary" id="deleteBtn2">
+                删除
+              </button>
+              <button type="button" class="layui-btn layui-btn-primary" id="zwybBtn2">
+                转为已办
+              </button>
+              <div>
+                    <table
+                    class="layui-table"
+                    id="scheduleDbTable"
+                    lay-filter="scheduleDbTable"
+                  ></table>
+              </div>
+            </div>
+            <div class="layui-tab-item">
+              <button type="button" class="layui-btn layui-btn-primary" id="deleteBtn3">
+                删除
+              </button>
+              <button type="button" class="layui-btn layui-btn-primary" id="zwdbBtn3">
+                转为待办
+              </button>
+              <div>
+                    <table
+                    class="layui-table"
+                    id="scheduleYbTable"
+                    lay-filter="scheduleYbTable"
+                  ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../assets/js/schedule/schedule.js"></script>
