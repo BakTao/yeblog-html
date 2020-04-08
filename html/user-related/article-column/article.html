@@ -103,6 +103,58 @@
               </div>
             </div>
             <div class="layui-form-item">
+              <label class="layui-form-label">点赞数</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="praiseNumsQ"
+                  placeholder="点赞数起"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 40px;margin-right: 30px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="praiseNumsZ"
+                  placeholder="点赞数止"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">收藏数</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="collectionNumsQ"
+                  placeholder="收藏数起"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 40px;margin-right: 30px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="collectionNumsZ"
+                  placeholder="收藏数止"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
               <div class="layui-input-inline" style="margin-left: 805px;">
                 <button
                   type="button"
@@ -237,8 +289,6 @@
                 </div>
               </div>
 
-              <div class="layui-form-item"></div>
-
               <div class="layui-form-item layui-form-text">
                 <label
                   class="layui-form-label"
@@ -251,6 +301,30 @@
                     class="layui-textarea"
                     name="reason" readonly=""
                   ></textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-inline">
+                  <label class="layui-form-label">点赞数</label>
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="praiseNums"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
+                </div>
+                <div class="layui-inline">
+                  <label class="layui-form-label">收藏数</label>
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="collectionNums"
+                      autocomplete="off"
+                      class="layui-input" readonly=""
+                    />
+                  </div>
                 </div>
               </div>
             </form>

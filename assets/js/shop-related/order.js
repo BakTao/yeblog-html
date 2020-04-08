@@ -33,6 +33,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
         , toolbar: true               //显示过滤列
         , defaultToolbar: ['filter']    //显示过滤列
         , title: '订单数据表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
         , cols: [
             [
                 { field: 'orderId', title: '订单ID', width: 200, align: 'center', sort: true }
@@ -74,6 +80,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                 "expressId": value,
                 "orderId": data.orderId
             }),
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+            },
+            error: function(xhr){
+                errorLogin(xhr);
+            },
             success: function (data) {
                 if (data.body == "success") {
                     alertmsgFtm("操作成功")
@@ -138,6 +150,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                 }
                 , where: {orderId: rowData.orderId}
                 , title: '订单商品数据表'
+                , headers:{
+                    Authorization: "ym:" + sessionStorage.getItem('token')
+                }
+                , error: function(xhr){
+                    errorLogin(xhr);
+                }
                 , cols: [
                     [
                         { field: 'goodsId', title: '商品ID', align: 'center', sort: true, totalRowText: "合计" }
@@ -160,6 +178,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
             url: host + "/back/orderServices/pageOrderInfo",
             method: "post",
             contentType: 'application/json'
+            , headers:{
+                Authorization: "ym:" + sessionStorage.getItem('token')
+            }
+            , error: function(xhr){
+                errorLogin(xhr);
+            }
         })
         return false;
     });

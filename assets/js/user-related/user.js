@@ -32,6 +32,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         , toolbar: true                 //显示过滤列
         , defaultToolbar: ['filter']    //显示过滤列
         , title: '用户数据表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
         , cols: [[
             {
                 field: 'enable', title: '状态', width: 80, align: 'center', sort: true, templet: function (res) {
@@ -84,9 +90,46 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 btnAlign: 'c',
                 btn: ['确定', '取消'],
                 closeBtn: 0,                    //不显示关闭按钮
-                content: `<textarea name="zfYhReason" id="zfYhReason" placeholder="封禁理由" style="width:300px;height:120px;"></textarea>`,
+                content: `<form class="layui-form" lay-filter="unableForm">
+                <div class="layui-form-item">
+                <textarea name="zfYhReason" id="zfYhReason" placeholder="封禁理由" style="width:300px;height:120px;"></textarea>
+                </div>
+                <div class="layui-form-item">
+                <div class="layui-input-inline" style="width: 290px;">
+                <input type="radio" name="unableDay" value="7" title="7天" checked="" lay-filter="unableDay">
+                <input type="radio" name="unableDay" value="30" title="30天" lay-filter="unableDay">
+                <input type="radio" name="unableDay" value="180" title="180天" lay-filter="unableDay">
+                <input type="radio" name="unableDay" value="0" title="其他" lay-filter="unableDay">
+                <input
+                type="text"
+                name="unableDayText"
+                autocomplete="off"
+                placeholder="天数"
+                class="layui-input"
+                readonly=""
+                style="display:inline;width:200px;"/>
+                </div>
+                </div>
+                </form>
+                <script>
+                layui.use(['form'], function () {
+                    var form = layui.form;
+                    form.render();
+
+                    form.on('radio(unableDay)', function (data) {
+                        var unableDay = data.value;
+                        if(unableDay == "0"){
+                            $("input[name=unableDayText]").removeAttr("readonly")
+                        }else{
+                            $("input[name=unableDayText]").attr("readonly","")
+                        }
+                    });
+                })
+                </script>`,
                 yes: function (index) {
-                    var reason = $('#zfYhReason').val();
+                    var formData = form.val("unableForm");
+                    var reason = formData.zfYhReason;
+                    var unableDay = formData.unableDay;
                     if (reason == '') {
                         layer.open({
                             title: "提示"
@@ -97,27 +140,49 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                 layer.close(index);
                             }
                         });
-                    } else {
-                        $.ajax({
-                            url: host + "/back/userServices/updateUserInfo",
-                            contentType: "application/json",
-                            type: "post",
-                            data: JSON.stringify({
-                                "loginId": data.loginId,
-                                "enable": "0",
-                                "reason": reason
-                            }),
-                            success: function (data) {
-                                if (data.body == "success") {
-                                    alertmsgFtm("操作成功")
-                                    userFormTable.reload();
-                                }
-                                else {
-                                    alertmsgFtm("操作失败,请稍后再试")
-                                }
-                            },
-                        })
+                        return false;
                     }
+                    if (unableDay == "0" && formData.unableDayText == "") {
+                        layer.open({
+                            title: "提示"
+                            , content: `封禁天数不能为空`
+                            , btn: ['关闭']
+                            , btnAlign: 'c' //按钮居中
+                            , yes: function (index) {   //加index,只关闭当前的
+                                layer.close(index);
+                            }
+                        });
+                        return false;
+                    } else if (unableDay == "0" && formData.unableDayText != "") {
+                        unableDay = formData.unableDayText;
+                    }
+                    $.ajax({
+                        url: host + "/back/userServices/updateUserInfo",
+                        contentType: "application/json",
+                        type: "post",
+                        data: JSON.stringify({
+                            "loginId": data.loginId,
+                            "unableDay": unableDay,
+                            "enable": "0",
+                            "reason": reason
+                        }),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                        },
+                        error: function(xhr){
+                            errorLogin(xhr);
+                        },
+                        success: function (data) {
+                            if (data.body == "success") {
+                                alertmsgFtm("操作成功")
+                                userFormTable.reload();
+                            }
+                            else {
+                                alertmsgFtm("操作失败,请稍后再试")
+                            }
+                        },
+                    })
+
                 },
                 btn2: function (index) {
                     var reason = $('#zfYhReason').val();
@@ -159,6 +224,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             "enable": "1",
                             "reason": ""
                         }),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                        },
+                        error: function(xhr){
+                            errorLogin(xhr);
+                        },
                         success: function (data) {
                             if (data.body == "success") {
                                 alertmsgFtm("操作成功")
@@ -201,8 +272,9 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 , "lastLogTime": data.lastLogTime
                 , "enable": data.enable == "1"
                 , "reason": data.reason
+                , "unableTime": data.unableTime
             });
-            //$("#userPhoto").attr("src",data.userPhoto)
+            //$("#userPhoto").attr("src", uploadUrl + data.userPhoto)
         }
     });
 
@@ -214,6 +286,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             url: host + "/back/userServices/pageUserInfo",
             method: "post",
             contentType: 'application/json'
+            , headers:{
+                Authorization: "ym:" + sessionStorage.getItem('token')
+            }
+            , error: function(xhr){
+                errorLogin(xhr);
+            }
         })
         return false;
     });

@@ -69,6 +69,12 @@ function changeRegChart(data){
         type: "post",
         contentType: 'application/json',
         data: JSON.stringify({"sjwd":sjwd, "tjnyq": tjnyq, "tjnyz": tjnyz}),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function(data){
             initRegChart(data.body);
         }

@@ -28,6 +28,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         type: "post",
         contentType: "application/json",
         data: JSON.stringify({}),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function (data) {
             columnId.update({ "data": data.body })
         }
@@ -54,6 +60,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         , toolbar: '#articleToolbar'                 //显示过滤列
         , defaultToolbar: ['filter']    //显示过滤列
         , title: '博客数据表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
         , cols: [[
             { type: 'checkbox', fixed: 'left' }
             , {
@@ -87,7 +99,10 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 }
             }
             , { field: 'columnName', title: '专栏名称', width: 120, align: 'center' }
-            , { field: 'createTime', title: '创建时间', width: 180, align: 'center', sort: true }
+            , { field: 'createTime', title: '创建时间', width: 180, align: 'center', sort: true }            , { field: 'columnName', title: '专栏名称', width: 120, align: 'center' }
+            , { field: 'praiseNums', title: '点赞数', width: 120, align: 'center', sort: true }
+            , { field: 'collectionNums', title: '收藏数', width: 120, align: 'center', sort: true }
+
             , {
                 fixed: 'oper', title: '操作', fixed: 'right', align: 'center', width: 180, templet: function (res) {
                     if (res.enable == "0") {
@@ -168,6 +183,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                     "enable": "0",
                                     "reason": reason
                                 }),
+                                beforeSend: function (XMLHttpRequest) {
+                                    XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                },
+                                error: function(xhr){
+                                    errorLogin(xhr);
+                                },
                                 success: function (data) {
                                     if (data.body == "success") {
                                         alertmsgFtm("操作成功")
@@ -242,6 +263,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                 "enable": "1",
                                 "reason": ""
                             }),
+                            beforeSend: function (XMLHttpRequest) {
+                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                            },
+                            error: function(xhr){
+                                errorLogin(xhr);
+                            },
                             success: function (data) {
                                 if (data.body == "success") {
                                     alertmsgFtm("操作成功")
@@ -298,6 +325,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                 "enable": "1",
                                 "reason": ""
                             }),
+                            beforeSend: function (XMLHttpRequest) {
+                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                            },
+                            error: function(xhr){
+                                errorLogin(xhr);
+                            },
                             success: function (data) {
                                 if (data.body == "success") {
                                     alertmsgFtm("操作成功")
@@ -349,6 +382,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                 "enable": "0",
                                 "reason": reason
                             }),
+                            beforeSend: function (XMLHttpRequest) {
+                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                            },
+                            error: function(xhr){
+                                errorLogin(xhr);
+                            },
                             success: function (data) {
                                 if (data.body == "success") {
                                     alertmsgFtm("操作成功")
@@ -401,6 +440,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             "enable": "1",
                             "reason": ""
                         }),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                        },
+                        error: function(xhr){
+                            errorLogin(xhr);
+                        },
                         success: function (data) {
                             if (data.body == "success") {
                                 alertmsgFtm("操作成功")
@@ -434,6 +479,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             "enable": "1",
                             "reason": ""
                         }),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                        },
+                        error: function(xhr){
+                            errorLogin(xhr);
+                        },
                         success: function (data) {
                             if (data.body == "success") {
                                 alertmsgFtm("操作成功")
@@ -476,6 +527,8 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 , "columnName": data.columnName
                 , "createTime": data.createTime
                 , "reason": data.reason
+                , "praiseNums": data.praiseNums
+                , "collectionNums": data.collectionNums
 
             });
 
@@ -520,6 +573,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             url: host + "/back/blogServices/pageBlogInfo",
             method: "post",
             contentType: 'application/json'
+            , headers:{
+                Authorization: "ym:" + sessionStorage.getItem('token')
+            }
+            , error: function(xhr){
+                errorLogin(xhr);
+            }
         })
         return false;
     });

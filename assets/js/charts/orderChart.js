@@ -36,6 +36,9 @@ layui.use(['table', 'layer', 'jquery', 'form'], function () {
             pageName: 'pageIndex',
             limitName: 'pageSize'
         }
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
         , title: '订单商品金额表'
         , cols: [
             [
@@ -48,6 +51,9 @@ layui.use(['table', 'layer', 'jquery', 'form'], function () {
 
         ]
         , page: true
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
     });
 
     $("#orderTableExport").on("click", function(){
@@ -56,6 +62,12 @@ layui.use(['table', 'layer', 'jquery', 'form'], function () {
             type: "post",
             contentType: 'application/json',
             data: JSON.stringify({}),
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+            },
+            error: function(xhr){
+                errorLogin(xhr);
+            },
             success: function (data) {
                 // 1. 数组头部新增表头
                 data.body.unshift({
@@ -114,6 +126,12 @@ function changeOrderChart1(sjwd) {
         type: "post",
         contentType: 'application/json',
         data: JSON.stringify({ "sjwd": sjwd}),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function (data) {
             initOrderChart1(data.body);
         }
@@ -127,6 +145,12 @@ function changeOrderChart2(sjwd) {
         type: "post",
         contentType: 'application/json',
         data: JSON.stringify({ "sjwd": sjwd}),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function (data) {
             initOrderChart2(data.body);
         }

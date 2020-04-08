@@ -36,7 +36,8 @@ jQuery(document).ready(function () {
                 data:JSON.stringify(data),
                 success: function(data){
                     if(data.head.code == "601"){
-                        alertmsgTm(data.head.msg)
+                        alertmsgTm(data.head.msg);
+                        return false;
                     }
                     else{
                         sessionStorage.setItem('token', data.body.token)
@@ -53,8 +54,6 @@ jQuery(document).ready(function () {
     $('.username, .password').keyup(function () {
         $(this).parent().find('.error').fadeOut('fast');
     });
-
-
 
 });
 

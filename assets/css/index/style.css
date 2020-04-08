@@ -2589,20 +2589,6 @@ a.bb {
   margin-left: 5px
 }
 
-.gradient-bottom {
-  position: relative
-}
-
-.gradient-bottom:after {
-  content: ' ';
-  position: absolute;
-  bottom: 41px;
-  left: 0;
-  width: 100%;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0.8));
-  height: 60px
-}
-
 .text-small {
   font-size: 12px;
   line-height: 20px
@@ -3608,11 +3594,6 @@ body.dark-mode .media .media-title,body.dark-mode .tickets-list .ticket-item .ti
 body.dark-mode .media .media-title a {
   color: #fff
 }
-
-body.dark-mode .gradient-bottom:after {
-  background-image: none
-}
-
 body.dark-mode .chat-box .chat-content {
   background-color: transparent !important
 }

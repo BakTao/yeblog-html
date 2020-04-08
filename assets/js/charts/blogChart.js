@@ -21,6 +21,12 @@ layui.use(['layer', 'jquery', 'form'], function () {
         type: "post",
         contentType: "application/json",
         data: JSON.stringify({}),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function (data) {
             columnId.update({ "data": data.body })
         }
@@ -128,6 +134,12 @@ function changeBlogChart(){
             type: "post",
             contentType: 'application/json',
             data: JSON.stringify({"sjwd":sjwd, "tjnyq": tjnyq, "tjnyz": tjnyz}),
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+            },
+            error: function(xhr){
+                errorLogin(xhr);
+            },
             success: function(data){
                 initBlogChart(data.body);
             }
@@ -139,6 +151,12 @@ function changeBlogChart(){
             type: "post",
             contentType: 'application/json',
             data: JSON.stringify({"blogType":blogType, "sjwd":sjwd, "tjnyq": tjnyq, "tjnyz": tjnyz}),
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+            },
+            error: function(xhr){
+                errorLogin(xhr);
+            },
             success: function(data){
                 initBlogChart(data.body);
             }
@@ -158,6 +176,12 @@ function changeBlogChart2(){
         type: "post",
         contentType: 'application/json',
         data: JSON.stringify(formData),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function(data){
             initBlogChart2(data.body);
         }

@@ -27,6 +27,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
         , toolbar: '#columnToolbar'                 //显示过滤列
         , defaultToolbar: ['filter']    //显示过滤列
         , title: '专栏数据表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
         , cols: [
             [
                 { type: 'checkbox', fixed: 'left', rowspan: 2 }
@@ -92,6 +98,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                 data: JSON.stringify({
                                     "columnName": columnName
                                 }),
+                                beforeSend: function (XMLHttpRequest) {
+                                    XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                },
+                                error: function(xhr){
+                                    errorLogin(xhr);
+                                },
                                 success: function (data) {
                                     if (data.body == "success") {
                                         alertmsgFtm("操作成功")
@@ -161,6 +173,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                 "columnName": columnName,
                                 "columnId": data.columnId
                             }),
+                            beforeSend: function (XMLHttpRequest) {
+                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                            },
+                            error: function(xhr){
+                                errorLogin(xhr);
+                            },
                             success: function (data) {
                                 if (data.body == "success") {
                                     alertmsgFtm("操作成功")
@@ -211,6 +229,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                             data: JSON.stringify({
                                 "columnId": data.columnId
                             }),
+                            beforeSend: function (XMLHttpRequest) {
+                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                            },
+                            error: function(xhr){
+                                errorLogin(xhr);
+                            },
                             success: function (data) {
                                 if (data.body == "success") {
                                     alertmsgFtm("操作成功")
@@ -276,6 +300,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                             "columnId": $("#oldColumnId").val(),
                                             "newColumnId": formdata.columnId
                                         }),
+                                        beforeSend: function (XMLHttpRequest) {
+                                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                        },
+                                        error: function(xhr){
+                                            errorLogin(xhr);
+                                        },
                                         success: function (data) {
                                             if (data.body == "success") {
                                                 alertmsgFtm("操作成功")
@@ -305,6 +335,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                                 "blogId": article,
                                                 "newColumnId": formdata.columnId
                                             }),
+                                            beforeSend: function (XMLHttpRequest) {
+                                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                            },
+                                            error: function(xhr){
+                                                errorLogin(xhr);
+                                            },
                                             success: function (data) {
                                                 if (data.body == "success") {
                                                     table.render({
@@ -327,6 +363,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                                                         }
                                                         , where: {columnId: $("#oldColumnId").val()}
                                                         , title: '专栏文章表'
+                                                        , headers:{
+                                                            Authorization: "ym:" + sessionStorage.getItem('token')
+                                                        }
+                                                        , error: function(xhr){
+                                                            errorLogin(xhr);
+                                                        }
                                                         , cols: [
                                                             [
                                                                 { type: 'checkbox', fixed: 'left'}
@@ -364,6 +406,12 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
             url: host + "/back/columnServices/pageColumnInfo",
             method: "post",
             contentType: 'application/json'
+            , headers:{
+                Authorization: "ym:" + sessionStorage.getItem('token')
+            }
+            , error: function(xhr){
+                errorLogin(xhr);
+            }
         })
         return false;
     });

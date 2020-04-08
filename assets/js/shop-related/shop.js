@@ -42,6 +42,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
         type: "post",
         contentType: "application/json",
         data: JSON.stringify({}),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function (data) {
             searchShopSelect.update({ "data": data.body })
             editShopSelect.update({ "data": data.body })
@@ -82,6 +88,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
         , toolbar: '#shopToolbar'                 //显示过滤列
         , defaultToolbar: ['filter']    //显示过滤列
         , title: '商品数据表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
         , cols: [
             [
                 { field: 'goodsId', title: '商品ID', width: 200, align: 'center', sort: true }
@@ -157,6 +169,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                         });
             
                     }
+                    , headers:{
+                        Authorization: "ym:" + sessionStorage.getItem('token')
+                    }
+                    , error: function(xhr){
+                        errorLogin(xhr);
+                    }
                     , done: function (res) {
                         if (res.head.code != "0") {
                             alertmsgFtmIndex(res.head.msg);
@@ -174,6 +192,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                     , url: host + '/back/uploadServices/fileUpload'
                     , before: function (obj) {
                         layer.msg('上传中');
+                    }
+                    , headers:{
+                        Authorization: "ym:" + sessionStorage.getItem('token')
+                    }
+                    , error: function(xhr){
+                        errorLogin(xhr);
                     }
                     , done: function (res) {
                         if (res.head.code != "0") {
@@ -231,6 +255,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                 "content": $("div#shopCreateForm textarea[name=content]").val(),
                                 "categoryId": createShopSelect.getValue("valueStr")
                             }),
+                            beforeSend: function (XMLHttpRequest) {
+                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                            },
+                            error: function(xhr){
+                                errorLogin(xhr);
+                            },
                             success: function (data) {
                                 if (data.body == "success") {
                                     shopFormTable.reload();
@@ -268,6 +298,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                         type: "post",
                         contentType: "application/json",
                         data: JSON.stringify({}),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                        },
+                        error: function(xhr){
+                            errorLogin(xhr);
+                        },
                         success: function (data) {
                             ShopSelect.update({ "data": data.body })
                         }
@@ -292,6 +328,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                 data: JSON.stringify({
                                     "categoryId": categoryId
                                 }),
+                                beforeSend: function (XMLHttpRequest) {
+                                    XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                },
+                                error: function(xhr){
+                                    errorLogin(xhr);
+                                },
                                 success: function (data) {
                                     if (data.body == "success") {
                                         $.ajax({
@@ -299,6 +341,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                             type: "post",
                                             contentType: "application/json",
                                             data: JSON.stringify({}),
+                                            beforeSend: function (XMLHttpRequest) {
+                                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                            },
+                                            error: function(xhr){
+                                                errorLogin(xhr);
+                                            },
                                             success: function (data) {
                                                 searchShopSelect.update({ "data": data.body })
                                                 editShopSelect.update({ "data": data.body })
@@ -348,6 +396,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                 data: JSON.stringify({
                                     "categoryName": categoryName
                                 }),
+                                beforeSend: function (XMLHttpRequest) {
+                                    XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                },
+                                error: function(xhr){
+                                    errorLogin(xhr);
+                                },
                                 success: function (data) {
                                     if (data.body == "success") {
                                         $.ajax({
@@ -355,6 +409,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                             type: "post",
                                             contentType: "application/json",
                                             data: JSON.stringify({}),
+                                            beforeSend: function (XMLHttpRequest) {
+                                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                            },
+                                            error: function(xhr){
+                                                errorLogin(xhr);
+                                            },
                                             success: function (data) {
                                                 searchShopSelect.update({ "data": data.body })
                                                 editShopSelect.update({ "data": data.body })
@@ -445,6 +505,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                 "content": $("div#shopEditForm textarea[name=content]").val(),
                                 "categoryId": editShopSelect.getValue("valueStr")
                             }),
+                            beforeSend: function (XMLHttpRequest) {
+                                XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                            },
+                            error: function(xhr){
+                                errorLogin(xhr);
+                            },
                             success: function (data) {
                                 if (data.body == "success") {
                                     shopFormTable.reload();
@@ -473,6 +539,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                     "content": $("div#shopEditForm textarea[name=content]").val(),
                                     "categoryId": editShopSelect.getValue("valueStr")
                                 }),
+                                beforeSend: function (XMLHttpRequest) {
+                                    XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                },
+                                error: function(xhr){
+                                    errorLogin(xhr);
+                                },
                                 success: function (data) {
                                     if (data.body == "success") {
                                         shopFormTable.reload();
@@ -500,6 +572,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                                     "content": $("div#shopEditForm textarea[name=content]").val(),
                                     "categoryId": editShopSelect.getValue("valueStr")
                                 }),
+                                beforeSend: function (XMLHttpRequest) {
+                                    XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                                },
+                                error: function(xhr){
+                                    errorLogin(xhr);
+                                },
                                 success: function (data) {
                                     if (data.body == "success") {
                                         shopFormTable.reload();
@@ -547,6 +625,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                     
         
                 }
+                , headers:{
+                    Authorization: "ym:" + sessionStorage.getItem('token')
+                }
+                , error: function(xhr){
+                    errorLogin(xhr);
+                }
                 , done: function (res) {
                     if (res.head.code != "0") {
                         alertmsgFtmIndex(res.head.msg);
@@ -564,6 +648,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                 , url: host + '/back/uploadServices/fileUpload'
                 , before: function (obj) {
                     layer.msg('上传中');
+                }
+                , headers:{
+                    Authorization: "ym:" + sessionStorage.getItem('token')
+                }
+                , error: function(xhr){
+                    errorLogin(xhr);
                 }
                 , done: function (res) {
                     if (res.head.code != "0") {
@@ -595,6 +685,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                             "goodsId": data.goodsId,
                             "enable": "0"
                         }),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                        },
+                        error: function(xhr){
+                            errorLogin(xhr);
+                        },                    
                         success: function (data) {
                             if (data.body == "success") {
                                 alertmsgFtm("操作成功")
@@ -630,6 +726,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                             "goodsId": data.goodsId,
                             "enable": "1"
                         }),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                        },
+                        error: function(xhr){
+                            errorLogin(xhr);
+                        },                    
                         success: function (data) {
                             if (data.body == "success") {
                                 alertmsgFtm("操作成功")
@@ -656,6 +758,12 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
             url: host + "/back/shopServices/pageShopInfo",
             method: "post",
             contentType: 'application/json'
+            , headers:{
+                Authorization: "ym:" + sessionStorage.getItem('token')
+            }
+            , error: function(xhr){
+                errorLogin(xhr);
+            }
         })
         return false;
     });

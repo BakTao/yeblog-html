@@ -12,6 +12,12 @@ layui.use(['table', 'element'], function () {
         data: JSON.stringify({
             "type": "0"
         }),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function (data) {
             $(".xxText").text(data.body.pager.recordCount)
         },
@@ -38,6 +44,9 @@ layui.use(['table', 'element'], function () {
             limitName: 'pageSize'
         }
         , title: '消息表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
         , cols: [
             [
                 { type: 'checkbox' }
@@ -57,6 +66,10 @@ layui.use(['table', 'element'], function () {
 
         ]
         , page: true
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
+    
     });
 
     //查询表格2
@@ -81,6 +94,9 @@ layui.use(['table', 'element'], function () {
             limitName: 'pageSize'
         }
         , title: '消息表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
         , cols: [
             [
                 { type: 'checkbox' }
@@ -104,6 +120,9 @@ layui.use(['table', 'element'], function () {
                 $(".dbClass").removeClass("layui-badge-dot")
             }
         }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }    
         , page: true
     });
 
@@ -129,6 +148,12 @@ layui.use(['table', 'element'], function () {
             limitName: 'pageSize'
         }
         , title: '消息表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
         , cols: [
             [
                 { type: 'checkbox' }
@@ -183,6 +208,12 @@ layui.use(['table', 'element'], function () {
                     data: JSON.stringify({
                         "scheduleId": scheduleId
                     }),
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                    },
+                    error: function(xhr){
+                        errorLogin(xhr);
+                    },
                     success: function (data) {
                         if (data.body == "success") {
                             alertmsgFtm("操作成功")
@@ -227,6 +258,12 @@ layui.use(['table', 'element'], function () {
                         "scheduleId": scheduleId,
                         "type": "1"
                     }),
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                    },
+                    error: function(xhr){
+                        errorLogin(xhr);
+                    },
                     success: function (data) {
                         if (data.body == "success") {
                             alertmsgFtm("操作成功")
@@ -270,6 +307,12 @@ layui.use(['table', 'element'], function () {
                         "scheduleId": scheduleId,
                         "type": "2"
                     }),
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                    },
+                    error: function(xhr){
+                        errorLogin(xhr);
+                    },
                     success: function (data) {
                         if (data.body == "success") {
                             alertmsgFtm("操作成功")
@@ -312,6 +355,12 @@ layui.use(['table', 'element'], function () {
                     data: JSON.stringify({
                         "scheduleId": scheduleId
                     }),
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                    },
+                    error: function(xhr){
+                        errorLogin(xhr);
+                    },
                     success: function (data) {
                         if (data.body == "success") {
                             alertmsgFtm("操作成功")
@@ -355,6 +404,12 @@ layui.use(['table', 'element'], function () {
                         "scheduleId": scheduleId,
                         "type": "3"
                     }),
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                    },
+                    error: function(xhr){
+                        errorLogin(xhr);
+                    },
                     success: function (data) {
                         if (data.body == "success") {
                             alertmsgFtm("操作成功")
@@ -398,6 +453,12 @@ layui.use(['table', 'element'], function () {
                     data: JSON.stringify({
                         "scheduleId": scheduleId
                     }),
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                    },
+                    error: function(xhr){
+                        errorLogin(xhr);
+                    },
                     success: function (data) {
                         if (data.body == "success") {
                             alertmsgFtm("操作成功")
@@ -441,6 +502,12 @@ layui.use(['table', 'element'], function () {
                         "scheduleId": scheduleId,
                         "type": "2"
                     }),
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                    },
+                    error: function(xhr){
+                        errorLogin(xhr);
+                    },
                     success: function (data) {
                         if (data.body == "success") {
                             alertmsgFtm("操作成功")
@@ -464,6 +531,12 @@ layui.use(['table', 'element'], function () {
                 url: host + "/back/scheduleServices/updateScheduleInfo",
                 contentType: "application/json",
                 type: "post",
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+                },
+                error: function(xhr){
+                    errorLogin(xhr);
+                },
                 data: JSON.stringify({
                     "scheduleId": data.scheduleId,
                     "type": "1"

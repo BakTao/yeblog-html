@@ -25,6 +25,12 @@ layui.use(['table', 'form'], function () {
         , width: 400
         , where: {columnId: oldColumnId}
         , title: '专栏文章表'
+        , headers:{
+            Authorization: "ym:" + sessionStorage.getItem('token')
+        }
+        , error: function(xhr){
+            errorLogin(xhr);
+        }
         , cols: [
             [
                 { type: 'checkbox', fixed: 'left'}
@@ -51,6 +57,12 @@ layui.use(['table', 'form'], function () {
         type: "post",
         contentType: "application/json",
         data: JSON.stringify({"columnId": oldColumnId}),
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
+        },
+        error: function(xhr){
+            errorLogin(xhr);
+        },
         success: function (data) {
             editColumnSelect.update({ "data": data.body })
         }
