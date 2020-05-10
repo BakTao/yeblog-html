@@ -1,0 +1,122 @@
+<section class="section">
+  <div class="section-header">
+    <h1>评论信息</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item">首页</div>
+      <div class="breadcrumb-item">用户相关</div>
+      <div class="breadcrumb-item">评论信息</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header" style="padding:15px 0;">
+          <form
+            id="commentSearchForm"
+            class="layui-form"
+            lay-filter="commentSearchForm"
+          >
+            <div class="layui-form-item">
+              <label class="layui-form-label">评论人</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="userId"
+                  autocomplete="off"
+                  placeholder="id,名称均可"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">博客名</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="blogId"
+                  autocomplete="off"
+                  placeholder="id,名称均可"
+                  class="layui-input"
+                />
+              </div>
+              <label class="layui-form-label">创建时间</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="timeQ"
+                  id="createTimeQ"
+                  placeholder="创建时间起"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+              <label
+                class="layui-form-label"
+                style="width: 20px;margin-right: 10px;"
+                >~</label
+              >
+
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  name="timeZ"
+                  id="createTimeZ"
+                  placeholder="创建时间止"
+                  autocomplete="off"
+                  class="layui-input"
+                />
+              </div>
+
+            </div>
+
+            <div class="layui-form-item">
+              <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                  <select name="enable">
+                    <option value="" selected="">全部</option>
+                    <option value="0">封禁</option>
+                    <option value="1">正常</option>
+                  </select>
+                </div>
+                <label class="layui-form-label">点赞数</label>
+                <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="praiseNumsQ"
+                      placeholder="点赞数起"
+                      autocomplete="off"
+                      class="layui-input"
+                    />
+                  </div>
+                  <label
+                    class="layui-form-label"
+                    style="width: 40px;margin-right: 30px;"
+                    >~</label
+                  >
+    
+                  <div class="layui-input-inline">
+                    <input
+                      type="text"
+                      name="praiseNumsZ"
+                      placeholder="点赞数止"
+                      autocomplete="off"
+                      class="layui-input"
+                    />
+                  </div>
+                  <div class="layui-input-inline" style="margin-left: 30px;">
+                      <button type="button" class="layui-btn" id="commentSearchFormBtn">
+                        确定
+                      </button>
+                      <button type="reset" class="layui-btn layui-btn-primary">
+                        重置
+                      </button>
+                    </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-body">
+          <table class="layui-hide" id="commentForm" lay-filter="commentForm"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../../assets/js/user-related/comment.js"></script>

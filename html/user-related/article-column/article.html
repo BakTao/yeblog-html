@@ -103,12 +103,12 @@
               </div>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">点赞数</label>
+              <label class="layui-form-label">观看数</label>
               <div class="layui-input-inline">
                 <input
                   type="text"
-                  name="praiseNumsQ"
-                  placeholder="点赞数起"
+                  name="viewNumsQ"
+                  placeholder="观看数起"
                   autocomplete="off"
                   class="layui-input"
                 />
@@ -122,8 +122,8 @@
               <div class="layui-input-inline">
                 <input
                   type="text"
-                  name="praiseNumsZ"
-                  placeholder="点赞数止"
+                  name="viewNumsZ"
+                  placeholder="观看数止"
                   autocomplete="off"
                   class="layui-input"
                 />
@@ -155,7 +155,32 @@
               </div>
             </div>
             <div class="layui-form-item">
-              <div class="layui-input-inline" style="margin-left: 805px;">
+                <label class="layui-form-label">评论数</label>
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="commentNumsQ"
+                    placeholder="评论数起"
+                    autocomplete="off"
+                    class="layui-input"
+                  />
+                </div>
+                <label
+                  class="layui-form-label"
+                  style="width: 40px;margin-right: 30px;"
+                  >~</label
+                >
+  
+                <div class="layui-input-inline">
+                  <input
+                    type="text"
+                    name="commentNumsZ"
+                    placeholder="评论数止"
+                    autocomplete="off"
+                    class="layui-input"
+                  />
+                </div>
+              <div class="layui-input-inline" style="margin-left: 300px;">
                 <button
                   type="button"
                   class="layui-btn"
@@ -223,34 +248,6 @@
                     />
                   </div>
                 </div>
-                <div
-                  class="layui-inline"
-                  style="width: 65px;margin: 0 5px 13px 0;"
-                >
-                  <div class="layui-input-inline" style="width: 100%;">
-                    <button
-                      type="button"
-                      class="layui-btn layui-btn-primary"
-                      id="coverBtn"
-                    >
-                      封面
-                    </button>
-                  </div>
-                </div>
-                <div
-                  class="layui-inline"
-                  style="width: 65px;margin: 0 0 13px 0;"
-                >
-                  <div class="layui-input-inline" style="width: 100%;">
-                    <button
-                      type="button"
-                      class="layui-btn layui-btn-primary"
-                      id="contentBtn"
-                    >
-                      正文
-                    </button>
-                  </div>
-                </div>
               </div>
               <div class="layui-form-item">
                 <div class="layui-inline">
@@ -305,11 +302,11 @@
               </div>
               <div class="layui-form-item">
                 <div class="layui-inline">
-                  <label class="layui-form-label">点赞数</label>
+                  <label class="layui-form-label">观看数</label>
                   <div class="layui-input-inline">
                     <input
                       type="text"
-                      name="praiseNums"
+                      name="viewNums"
                       autocomplete="off"
                       class="layui-input" readonly=""
                     />
@@ -326,6 +323,17 @@
                     />
                   </div>
                 </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">评论数</label>
+                    <div class="layui-input-inline">
+                      <input
+                        type="text"
+                        name="commentNums"
+                        autocomplete="off"
+                        class="layui-input" readonly=""
+                      />
+                    </div>
+                  </div>
               </div>
             </form>
           </div>
@@ -334,4 +342,9 @@
     </div>
   </div>
 </section>
+<link rel="stylesheet" href="../../../assets/modules/editor.md-master/css/editormd.css" />
+<link rel="stylesheet" href="../../../assets/modules/editor.md-master/css/editormd.preview.css" />
 <script src="../../../assets/js/user-related/article-column/article.js"></script>
+<script src="../../../assets/modules/editor.md-master/editormd.min.js"></script>
+<script src="../../../assets/modules/editor.md-master/lib/marked.min.js"></script>
+<script src="../../../assets/modules/editor.md-master/lib/prettify.min.js"></script>

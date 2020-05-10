@@ -99,10 +99,10 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 }
             }
             , { field: 'columnName', title: '专栏名称', width: 120, align: 'center' }
-            , { field: 'createTime', title: '创建时间', width: 180, align: 'center', sort: true }            , { field: 'columnName', title: '专栏名称', width: 120, align: 'center' }
-            , { field: 'praiseNums', title: '点赞数', width: 120, align: 'center', sort: true }
+            , { field: 'createTime', title: '创建时间', width: 180, align: 'center', sort: true }            
+            , { field: 'viewNums', title: '观看数', width: 120, align: 'center', sort: true }
             , { field: 'collectionNums', title: '收藏数', width: 120, align: 'center', sort: true }
-
+            , { field: 'commentNums', title: '评论数', width: 120, align: 'center', sort: true }
             , {
                 fixed: 'oper', title: '操作', fixed: 'right', align: 'center', width: 180, templet: function (res) {
                     if (res.enable == "0") {
@@ -504,10 +504,47 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 , area: ['70%', '85%']
                 , offset: ['10%', '25%']
                 , content: $("div #articleViewForm")
-                , btn: ['关闭']
+                , btn: ['查看封面','查看正文','关闭']
                 , btnAlign: 'c' //按钮居中
                 , shade: 0 //不显示遮罩
                 , yes: function () {
+                    var imgHtml = "<img src='" + uploadUrl + data.cover + "' width='600px' height='400px'/>";
+                    layer.open({
+                        type: 1,
+                        shade: 0.8,
+                        offset: 'auto',
+                        area: [600 + 'px', 400 + 'px'],
+                        shadeClose: true,
+                        scrollbar: false,
+                        
+                        title: false, //不显示标题  
+                        content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响  
+                        cancel: function (index) {
+                            //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });  
+                            layer.close(index);
+                        }
+                    });
+                }
+                ,btn2: function(){
+                    layer.open({
+                        title: "查看博客"
+                        , type: 1
+                        , area: ['90%', '85%']
+                        , content: '<div id="blogCotent">' + data.content + '</div>'
+                        , btn: ['关闭']
+                        , btnAlign: 'c' //按钮居中
+                    
+                        , yes: function (index) {
+                            layer.close(index);
+                        }
+                        ,success:function(){
+                            editormd.markdownToHTML("blogContent");
+                        }
+                    });
+                    editormd.markdownToHTML("blogContent");
+                    return false;
+                }
+                ,btn3: function(){
                     layer.closeAll();
                 }
             });
@@ -527,42 +564,15 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 , "columnName": data.columnName
                 , "createTime": data.createTime
                 , "reason": data.reason
-                , "praiseNums": data.praiseNums
+                , "viewNums": data.viewNums
                 , "collectionNums": data.collectionNums
-
+                , "commentNums": data.commentNums
             });
 
+
+            
         }
-        $("#coverBtn").on('click', function () {
-            var imgHtml = "<img src='' width='600px' height='400px'/>";
-            layer.open({
-                type: 1,
-                shade: 0.8,
-                offset: 'auto',
-                area: [600 + 'px', 400 + 'px'],
-                shadeClose: true,
-                scrollbar: false,
-                title: false, //不显示标题  
-                content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响  
-                cancel: function () {
-                    //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });  
-                }
-            });
-        })
-
-        $("#contentBtn").on('click', function () {
-            layer.open({
-                title: "查看博客"
-                , type: 1
-                , area: ['90%', '85%']
-                , content: data.content
-                , btn: ['关闭']
-                , btnAlign: 'c' //按钮居中
-                , yes: function (index) {
-                    layer.close(index);
-                }
-            });
-        })
+        
     });
 
     //查询

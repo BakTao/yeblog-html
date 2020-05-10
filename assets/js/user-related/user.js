@@ -268,13 +268,16 @@ layui.use(['table', 'form', 'layedit', 'laydate'], function () {
                 , "ownBlogCount": data.ownBlogCount
                 , "noOwnBlogCount": data.noOwnBlogCount
                 , "testBlogCount": data.testBlogCount
+                , "collectionNums": data.collectionNums
+                , "commentNumsHj": data.commentNumsHj
+                , "commentPraiseNums": data.commentPraiseNums
                 , "lastLogIp": data.lastLogIp
                 , "lastLogTime": data.lastLogTime
                 , "enable": data.enable == "1"
                 , "reason": data.reason
                 , "unableTime": data.unableTime
             });
-            //$("#userPhoto").attr("src", uploadUrl + data.userPhoto)
+            $("#userPhoto").attr("src", uploadUrl + data.userPhoto)
         }
     });
 

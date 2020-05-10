@@ -49,8 +49,10 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                     if (res.enable == "0") {
                         return ' <span style="color:red;">已关闭</span>'
                     } else if(res.enable == "1"){
-                        return ' <span style="color:blue;">未完成</span>'
+                        return ' <span style="color:blue;">待发货</span>'
                     } else if(res.enable == "2"){
+                        return ' <span style="color:chocolate;">待收货</span>'
+                    } else if(res.enable == "3"){
                         return ' <span style="color:green;">已完成</span>'
                     }
                 }}
@@ -78,7 +80,8 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
             type: "post",
             data: JSON.stringify({
                 "expressId": value,
-                "orderId": data.orderId
+                "orderId": data.orderId,
+                "enable":"2"
             }),
             beforeSend: function (XMLHttpRequest) {
                 XMLHttpRequest.setRequestHeader("Authorization", "ym:" + sessionStorage.getItem('token'));
@@ -121,8 +124,10 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
             if(rowData.enable == "0"){
                 $("div#orderViewForm input[name=enable]").attr("title","已关闭")
             }else if(rowData.enable == "1"){
-                $("div#orderViewForm input[name=enable]").attr("title","未完成")
+                $("div#orderViewForm input[name=enable]").attr("title","待发货")
             }else if(rowData.enable == "2"){
+                $("div#orderViewForm input[name=enable]").attr("title","待收货")
+            }else if(rowData.enable == "3"){
                 $("div#orderViewForm input[name=enable]").attr("title","已完成")
             }
             form.val('orderViewForm', {
@@ -133,6 +138,7 @@ layui.use(['table', 'form', 'layedit', 'laydate', 'upload'], function () {
                 , "remark": rowData.remark
                 , "createTime": rowData.createTime
                 , "price": rowData.price
+                , "userName": rowData.userName
             });
 
             table.render({

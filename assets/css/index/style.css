@@ -4046,6 +4046,15 @@ div#userViewForm .layui-form-label{
   width: 70px;
 }
 
+/* 评论信息的查询 */
+#commentSearchForm .layui-form-item .layui-input-inline{
+  width: 160px;
+}
+#commentSearchForm .layui-form-label{
+  padding: 9px 5px;
+  width: 70px;
+}
+
 /* 文章管理的查询 */
 #articleSearchForm .layui-form-item .layui-input-inline{
   width: 160px;
